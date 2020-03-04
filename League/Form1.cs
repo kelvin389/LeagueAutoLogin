@@ -52,7 +52,6 @@ namespace League
         private void OnChampSelectSessionUpdate(object sender, LeagueEvent e)
         {
             //Console.WriteLine(e.Data.ToString());
-            //Console.WriteLine("TEST);
             
             WriteSafe("status", e.Data.ToString());
         }
