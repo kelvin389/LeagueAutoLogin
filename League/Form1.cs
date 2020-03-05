@@ -12,8 +12,13 @@ namespace League
     {
         private delegate void SafeCallDelegate(string label, string text);
 
+        // event handlers
         public event EventHandler<LeagueEvent> ChampSelectSessionUpdated;
 
+        enum ChampionID
+        {
+            
+        };
         public Form1()
         {
             InitializeComponent();
