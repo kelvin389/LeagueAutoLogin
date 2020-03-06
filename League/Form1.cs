@@ -14,7 +14,7 @@ namespace League
 
         private static ChampionForm ChampForm = new ChampionForm();
         private static int SelectingSlot = 0;
-        private static int[] PreferredChamps = new int[5] { -1, -1, -1, -1, -1};
+        private static int[] PreferredChamps = new int[5];
 
         private delegate void SafeCallDelegate(string label, string text);
 
@@ -39,11 +39,12 @@ namespace League
         static void OnProcessExit(object sender, EventArgs e)
         {
             LeagueEventHandler.UnsubscribeSocket();
-            Console.ReadKey();
         }
 
         private async void Start()
         {
+            LoadSettings();
+
             status.Text = "Waiting for League...";
 
             // connect to client by path
@@ -72,6 +73,26 @@ namespace League
             GameFlowUpdated += OnGameFlowUpdate;
             LeagueEventHandler.Subscribe("/lol-gameflow/v1/gameflow-phase", GameFlowUpdated);
         }
+
+        private void LoadSettings()
+        {
+            // get saved settings
+            PreferredChamps[0] = Properties.Settings.Default.champ0;
+            PreferredChamps[1] = Properties.Settings.Default.champ1;
+            PreferredChamps[2] = Properties.Settings.Default.champ2;
+            PreferredChamps[3] = Properties.Settings.Default.champ3;
+            PreferredChamps[4] = Properties.Settings.Default.champ4;
+
+            // update labels to previous settings labels
+            for (int i = 0; i < PreferredChamps.Length; i++)
+            {
+                string labelname = "ChampPref" + i;
+
+                Label lb = Controls.Find(labelname, false).First() as Label;
+                lb.Text = Champion.IDtoName(PreferredChamps[i]);
+            }
+        }
+        
 
         private void OnGameFlowUpdate(object sender, LeagueEvent e)
         {
@@ -193,9 +214,31 @@ namespace League
             ChampForm.Close();
             PreferredChamps[SelectingSlot] = ChampForm.selectedId;
 
+            // update label
             string label = "ChampPref" + SelectingSlot;
             Label lb = form.Controls.Find(label, false).FirstOrDefault() as Label;
-            lb.Text = ChampForm.selectedName;
+            lb.Text = Champion.IDtoName(ChampForm.selectedId);
+
+            // save settings
+            switch (SelectingSlot)
+            {
+                case 0:
+                    Properties.Settings.Default.champ0 = ChampForm.selectedId;
+                    break;
+                case 1:
+                    Properties.Settings.Default.champ1 = ChampForm.selectedId;
+                    break;
+                case 2:
+                    Properties.Settings.Default.champ2 = ChampForm.selectedId;
+                    break;
+                case 3:
+                    Properties.Settings.Default.champ3 = ChampForm.selectedId;
+                    break;
+                case 4:
+                    Properties.Settings.Default.champ4 = ChampForm.selectedId;
+                    break;
+            }
+            Properties.Settings.Default.Save();
         }
 
         private void ChampPref0_DoubleClick(object sender, EventArgs e)
