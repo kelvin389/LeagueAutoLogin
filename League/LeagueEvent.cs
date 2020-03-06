@@ -1,4 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿/*
+ * Taken from here:
+ * https://github.com/BryanHitchcock/lcu-sharp
+ */
+
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace League
