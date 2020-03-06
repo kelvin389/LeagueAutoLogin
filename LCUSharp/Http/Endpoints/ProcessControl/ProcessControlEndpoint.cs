@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace LCUref.Http.Endpoints
+namespace LCUSharp.Http.Endpoints
 {
     /// <inheritdoc cref="IProcessControlEndpoint"/>
     internal class ProcessControlEndpoint : EndpointBase, IProcessControlEndpoint
@@ -20,7 +20,7 @@ namespace LCUref.Http.Endpoints
         /// <inheritdoc />
         public async Task QuitAsync()
         {
-            await RequestHandler.GetJsonResponseAsync(HttpMethod.Post, $"{BaseUrl}quit").ConfigureAwait(false);
+            await RequestHandler.GetJsonResponseAsync(System.Net.Http.HttpMethod.Post, $"{BaseUrl}quit").ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -40,7 +40,7 @@ namespace LCUref.Http.Endpoints
         /// <inheritdoc />
         public async Task RestartToRepair()
         {
-            await RequestHandler.GetJsonResponseAsync(HttpMethod.Post, $"{BaseUrl}restart-to-repair").ConfigureAwait(false);
+            await RequestHandler.GetJsonResponseAsync(System.Net.Http.HttpMethod.Post, $"{BaseUrl}restart-to-repair").ConfigureAwait(false);
         }
 
         /// <inheritdoc />
@@ -51,7 +51,7 @@ namespace LCUref.Http.Endpoints
                 $"delaySeconds={delaySeconds}",
                 $"selfUpdateUrl={selfUpdateUrl}"
             };
-            await RequestHandler.GetJsonResponseAsync(HttpMethod.Post, $"{BaseUrl}restart-to-update", queryParameters).ConfigureAwait(false);
+            await RequestHandler.GetJsonResponseAsync(System.Net.Http.HttpMethod.Post, $"{BaseUrl}restart-to-update", queryParameters).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace LCUref.Http.Endpoints
         private async Task RestartAsync(int delaySeconds, ICollection<string> queryParameters)
         {
             queryParameters.Add($"delaySeconds={delaySeconds}");
-            await RequestHandler.GetJsonResponseAsync(HttpMethod.Post, $"{BaseUrl}restart", queryParameters).ConfigureAwait(false);
+            await RequestHandler.GetJsonResponseAsync(System.Net.Http.HttpMethod.Post, $"{BaseUrl}restart", queryParameters).ConfigureAwait(false);
         }
     }
 }

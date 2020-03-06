@@ -1,7 +1,7 @@
 ﻿using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace LCUref
+namespace LCUSharp
 {
     public delegate void LeagueClosedHandler();
 
@@ -23,6 +23,7 @@ namespace LCUref
         Get,
         Post,
         Put,
-        Delete
+        Delete,
+        Patch
     }
 }

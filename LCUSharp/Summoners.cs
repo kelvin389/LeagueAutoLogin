@@ -1,9 +1,9 @@
-﻿using LCUref.DataObjects;
+﻿using LCUSharp.DataObjects;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LCUref
+namespace LCUSharp
 {
     public class Summoners
     {

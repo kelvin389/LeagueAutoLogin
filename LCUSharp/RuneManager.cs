@@ -1,8 +1,8 @@
-﻿using LCUref.DataObjects;
+﻿using LCUSharp.DataObjects;
 using Newtonsoft.Json;
 using System.Net;
 
-namespace LCUref
+namespace LCUSharp
 {
     public class RuneManager
     {

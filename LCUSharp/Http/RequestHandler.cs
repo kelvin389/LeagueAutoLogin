@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LCUref.Http
+namespace LCUSharp.Http
 {
     /// <summary>
     /// A request handler that supports authentication.
@@ -51,7 +51,7 @@ namespace LCUref.Http
         /// <param name="body">The request's body.</param>
         /// <param name="queryParameters">The query parameters.</param>
         /// <returns></returns>
-        protected async Task<HttpRequestMessage> PrepareRequestAsync<TRequest>(HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters, TRequest body)
+        protected async Task<HttpRequestMessage> PrepareRequestAsync<TRequest>(System.Net.Http.HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters, TRequest body)
         {
             var url = queryParameters == null
                 ? relativeUrl

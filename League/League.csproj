@@ -36,10 +36,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LCUSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\LCUSharp\bin\Debug\netstandard2.0\LCUSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -106,7 +102,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\LCUSharp\LCUSharp.csproj">
+      <Project>{8fb047e2-706d-48b5-9b28-d6a32509a04f}</Project>
+      <Name>LCUSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="data\icons\Aatrox_0.jpg" />
     <Content Include="data\icons\Aatrox_1.jpg" />

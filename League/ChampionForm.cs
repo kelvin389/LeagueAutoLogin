@@ -53,9 +53,6 @@ namespace League
 
                 // next champion (next on the JProperty layer)
                 JpropLevel = JpropLevel.Next;
-                Console.WriteLine(name);
-                Console.WriteLine(id);
-                Console.WriteLine();
                 
             }
 

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 using LCUSharp;
 using Newtonsoft.Json.Linq;
@@ -34,20 +32,18 @@ namespace League
         {
             InitializeComponent();
             form = this;
-            FormClosing += new FormClosingEventHandler(Form1_Closing);
+            AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             Start();
         }
 
-        private void Form1_Closing(object sender, FormClosingEventArgs e)
+        static void OnProcessExit(object sender, EventArgs e)
         {
-            // clean up before closing
             LeagueEventHandler.UnsubscribeSocket();
+            Console.ReadKey();
         }
 
         private async void Start()
         {
-            ChampForm.Show();
-
             status.Text = "Waiting for League...";
 
             // connect to client by path
@@ -103,10 +99,69 @@ namespace League
             JToken bans = e.Data["bans"];
             var ourBans = bans["myTeamBans"];
             var theirBans = bans["theirTeamBans"];
+            int localCellId = Convert.ToInt32(e.Data["localPlayerCellId"]);
 
             // empty bans array is "[]". we only want to parse bans if there are any
             if (ourBans.ToString().Length > 2) ParseBans(ourBans);
             if (theirBans.ToString().Length > 2) ParseBans(theirBans);
+
+            JToken actionstop = e.Data["actions"];
+
+            var actionslist = actionstop.First().Children();
+            var curchild = actionslist.First();
+
+            //Console.WriteLine(curchild);
+            // iterate through all actions
+            for (int i = 0; i < actionslist.Count(); i++)
+            {
+                int curCellId = Convert.ToInt32(curchild["actorCellId"]);
+                int actionId = Convert.ToInt32(curchild["id"]);
+
+                if (curCellId == localCellId)
+                {
+                    /*
+                    //string jsonput = "{
+                    "actorCellId": 0,
+                    "championId": 0,
+                    "completed": false,
+                    "id": 1,
+                    "isAllyAction": true,
+                    "isInProgress": true,
+                    "pickTurn": 1,
+                    "type": "pick"
+                    "
+                    */
+
+                    // hover champ
+                    string str = "{\"championId\": 1}";
+                    
+                    Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(str));
+                    //API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, Newtonsoft.Json.JsonConvert.SerializeObject(str));
+                    API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
+
+                    Console.WriteLine("a");
+
+                    // lock in
+                }
+                Console.WriteLine("B" + curCellId);
+            }
+
+            /*
+             * Get actions from session
+             * for (int i = 0; i < actions.length; i++)
+             * {
+             *     if (actions.getslotid == localplayerslot && isinprogress)
+             *     {
+             *         for (int j = 0; j < preferredchamps.length; j++)
+             *         {
+             *             if (!unavailablechamps.contains(preferredchamps[j]))
+             *             {
+             *                 API.client.sendhttprequest(post, /api/champ-select/lock-in, preferredchamps[j]);
+             *             }
+             *         }
+             *     }
+             * }
+             */
         }
 
         private static void ParseBans(JToken data)
@@ -131,6 +186,14 @@ namespace League
                     UnavailableChampsID.Add(id);
                 }
             }
+
+            /*
+            for (int i = 0; i < UnavailableChampsID.Count; i++)
+            {
+                Console.WriteLine(UnavailableChampsID[i]);
+            }
+            */
+
         }
 
         private void WriteSafe(string label, string text)
@@ -198,19 +261,3 @@ namespace League
 
 }
 
-/*
- * Get actions from session
- * for (int i = 0; i < actions.length; i++)
- * {
- *     if (actions.getslotid == localplayerslot && isinprogress)
- *     {
- *         for (int j = 0; j < preferredchamps.length; j++)
- *         {
- *             if (!unavailablechamps.contains(preferredchamps[j]))
- *             {
- *                 API.client.sendhttprequest(post, /api/champ-select/lock-in, preferredchamps[j]);
- *             }
- *         }
- *     }
- * }
- */

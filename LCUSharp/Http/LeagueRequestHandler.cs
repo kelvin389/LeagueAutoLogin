@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LCUref.Http
+namespace LCUSharp.Http
 {
     /// <inheritdoc cref="ILeagueRequestHandler" />
     internal class LeagueRequestHandler : RequestHandler, ILeagueRequestHandler
@@ -40,13 +40,13 @@ namespace LCUref.Http
         }
 
         /// <inheritdoc />
-        public async Task<string> GetJsonResponseAsync(HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters = null)
+        public async Task<string> GetJsonResponseAsync(System.Net.Http.HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters = null)
         {
             return await GetJsonResponseAsync<object>(httpMethod, relativeUrl, queryParameters, null).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<string> GetJsonResponseAsync<TRequest>(HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters, TRequest body)
+        public async Task<string> GetJsonResponseAsync<TRequest>(System.Net.Http.HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters, TRequest body)
         {
             var request = await PrepareRequestAsync(httpMethod, relativeUrl, queryParameters, body).ConfigureAwait(false);
             var response = await HttpClient.SendAsync(request).ConfigureAwait(false);
@@ -55,13 +55,13 @@ namespace LCUref.Http
         }
 
         /// <inheritdoc />
-        public async Task<TResponse> GetResponseAsync<TResponse>(HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters = null)
+        public async Task<TResponse> GetResponseAsync<TResponse>(System.Net.Http.HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters = null)
         {
             return await GetResponseAsync<object, TResponse>(httpMethod, relativeUrl, queryParameters, null).ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public async Task<TResponse> GetResponseAsync<TRequest, TResponse>(HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters, TRequest body)
+        public async Task<TResponse> GetResponseAsync<TRequest, TResponse>(System.Net.Http.HttpMethod httpMethod, string relativeUrl, IEnumerable<string> queryParameters, TRequest body)
         {
             var json = await GetJsonResponseAsync(httpMethod, relativeUrl, queryParameters, body).ConfigureAwait(false);
             return await Task.Run(() => JsonConvert.DeserializeObject<TResponse>(json)).ConfigureAwait(false);

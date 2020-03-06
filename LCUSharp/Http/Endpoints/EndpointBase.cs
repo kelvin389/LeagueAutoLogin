@@ -1,4 +1,4 @@
-﻿namespace LCUref.Http.Endpoints
+﻿namespace LCUSharp.Http.Endpoints
 {
     /// <summary>
     /// An endpoint within the league client's API.

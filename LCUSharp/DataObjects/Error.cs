@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace LCUref.DataObjects
+namespace LCUSharp.DataObjects
 {
     public class Error
     {

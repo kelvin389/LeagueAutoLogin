@@ -44,6 +44,7 @@ namespace League
         {
             // unsubscribe from all events
             if (subscribed) _webSocket.Send("[6, \"OnJsonApiEvent\"]");
+            _webSocket.Close();
         }
 
         private static void Init()
@@ -67,6 +68,7 @@ namespace League
 
         private static void OnMessage(object sender, MessageEventArgs e)
         {
+            Console.WriteLine("A");
             // Check if the message is json received from the client
             if (e.IsText)
             {
