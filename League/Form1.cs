@@ -23,7 +23,6 @@ namespace League
         // event handlers
         private event EventHandler<LeagueEvent> ChampSelectSessionUpdated;
         private event EventHandler<LeagueEvent> GameFlowUpdated;
-        private event EventHandler<LeagueEvent> ReadyCheckPopped;
         
         private static List<int> UnavailableChampsID = new List<int>();
 
