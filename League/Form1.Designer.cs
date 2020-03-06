@@ -40,6 +40,7 @@
             this.eChamp2 = new System.Windows.Forms.Label();
             this.eChamp1 = new System.Windows.Forms.Label();
             this.eChamp0 = new System.Windows.Forms.Label();
+            this.formdebug = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label2
@@ -162,11 +163,20 @@
             this.eChamp0.TabIndex = 10;
             this.eChamp0.Text = "label1";
             // 
+            // formdebug
+            // 
+            this.formdebug.Location = new System.Drawing.Point(342, 12);
+            this.formdebug.Name = "formdebug";
+            this.formdebug.Size = new System.Drawing.Size(1017, 600);
+            this.formdebug.TabIndex = 16;
+            this.formdebug.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 373);
+            this.ClientSize = new System.Drawing.Size(1371, 624);
+            this.Controls.Add(this.formdebug);
             this.Controls.Add(this.eChamp4);
             this.Controls.Add(this.eChamp3);
             this.Controls.Add(this.eChamp2);
@@ -199,6 +209,7 @@
         private System.Windows.Forms.Label eChamp2;
         private System.Windows.Forms.Label eChamp1;
         private System.Windows.Forms.Label eChamp0;
+        private System.Windows.Forms.RichTextBox formdebug;
     }
 }
 

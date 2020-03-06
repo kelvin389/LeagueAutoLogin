@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -13,12 +14,10 @@ namespace League
         private delegate void SafeCallDelegate(string label, string text);
 
         // event handlers
-        public event EventHandler<LeagueEvent> ChampSelectSessionUpdated;
+        private event EventHandler<LeagueEvent> ChampSelectSessionUpdated;
 
-        enum ChampionID
-        {
-            
-        };
+        private static List<int> UnavailableChampsID = new List<int>();
+
         public Form1()
         {
             InitializeComponent();
@@ -55,15 +54,44 @@ namespace League
         }
 
         private void OnChampSelectSessionUpdate(object sender, LeagueEvent e)
+        {   
+            WriteSafe("formdebug", e.Data.ToString());
+            JToken bans = e.Data["bans"];
+            var ourBans = bans["myTeamBans"];
+            var theirBans = bans["theirTeamBans"];
+
+            // empty bans array is "[]". we only want to parse bans if there are any
+            if (ourBans.ToString().Length > 2) ParseBans(ourBans);
+            if (theirBans.ToString().Length > 2) ParseBans(theirBans);
+        }
+
+        private static void ParseBans(JToken data)
         {
-            //Console.WriteLine(e.Data.ToString());
-            
-            WriteSafe("status", e.Data.ToString());
+            string[] bansStrArr = null;
+
+            // clean up data
+            data = data.ToString().Replace("[", "");
+            data = data.ToString().Replace("]", "");
+            data.ToString().Trim();
+
+            // break up into string array
+            bansStrArr = data.ToString().Split(',');
+
+            // add missing bans to unavailable champs
+            for (int i = 0; i < bansStrArr.Length; i++)
+            {
+                int id = Convert.ToInt32(bansStrArr[i]);
+
+                if (!UnavailableChampsID.Contains(id))
+                {
+                    UnavailableChampsID.Add(id);
+                }
+            }
         }
 
         private void WriteSafe(string label, string text)
         {
-            Label lb = Controls.Find(label, false).FirstOrDefault() as Label;
+            RichTextBox lb = Controls.Find(label, false).FirstOrDefault() as RichTextBox;
 
             if (lb.InvokeRequired)
             {
