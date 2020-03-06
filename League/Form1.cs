@@ -76,25 +76,18 @@ namespace League
 
             GameFlowUpdated += OnGameFlowUpdate;
             LeagueEventHandler.Subscribe("/lol-gameflow/v1/gameflow-phase", GameFlowUpdated);
-
-            ReadyCheckPopped += OnReadyCheckPop;
-            LeagueEventHandler.Subscribe("/lol-matchmaking/v1/ready-check", ReadyCheckPopped);
-        }
-
-        private void OnReadyCheckPop(object sender, LeagueEvent e)
-        {
-            if (autoAcceptQueue)
-            {
-                API.client.MakeApiRequest(HttpMethod.Post, "/lol-matchmaking/v1/ready-check/decline");
-            }
         }
 
         private void OnGameFlowUpdate(object sender, LeagueEvent e)
         {
             string phase = e.Data.ToString();
-            
+
+            if (phase == "ReadyCheck" && autoAcceptQueue)
+            {
+                API.client.MakeApiRequest(HttpMethod.Post, "/lol-matchmaking/v1/ready-check/decline");
+            }
             // returned to lobby for whatever reason
-            if (inChampSelect && phase == "Lobby")
+            else if (inChampSelect && phase == "Lobby")
             {
                 inChampSelect = false;
                 UnavailableChampsID.Clear();
