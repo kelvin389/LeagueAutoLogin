@@ -11,13 +11,20 @@ namespace League
 {
     public partial class Form1 : Form
     {
+        // workaround to be able to call non static methods inside a static method
+        public static Form form;
+
+        private static ChampionForm ChampForm = new ChampionForm();
+        private static int SelectingSlot = 0;
+        private static int[] PreferredChamps = new int[3];
+
         private delegate void SafeCallDelegate(string label, string text);
 
         // event handlers
         private event EventHandler<LeagueEvent> ChampSelectSessionUpdated;
         private event EventHandler<LeagueEvent> GameFlowUpdated;
         private event EventHandler<LeagueEvent> ReadyCheckPopped;
-
+        
         private static List<int> UnavailableChampsID = new List<int>();
 
         private bool inChampSelect = false;
@@ -27,6 +34,7 @@ namespace League
         public Form1()
         {
             InitializeComponent();
+            form = this;
             FormClosing += new FormClosingEventHandler(Form1_Closing);
             Start();
         }
@@ -39,6 +47,8 @@ namespace League
 
         private async void Start()
         {
+            ChampForm.Show();
+
             status.Text = "Waiting for League...";
 
             // connect to client by path
@@ -158,6 +168,35 @@ namespace League
         {
             autoAcceptQueue = autoAccept.Checked;
         }
+
+        public static void ChampionSelected()
+        {
+            ChampForm.Close();
+            PreferredChamps[SelectingSlot] = ChampForm.selectedId;
+
+            string label = "ChampPref" + SelectingSlot;
+            Label lb = form.Controls.Find(label, false).FirstOrDefault() as Label;
+            lb.Text = ChampForm.selectedName;
+        }
+
+        private void ChampPref0_DoubleClick(object sender, EventArgs e)
+        {
+            SelectingSlot = 0;
+            ChampForm.Show();
+        }
+
+        private void ChampPref1_DoubleClick(object sender, EventArgs e)
+        {
+            SelectingSlot = 1;
+            ChampForm.Show();
+        }
+
+        private void ChampPref2_DoubleClick(object sender, EventArgs e)
+        {
+            SelectingSlot = 2;
+            ChampForm.Show();
+        }
+
     }
 
     static class API

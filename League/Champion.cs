@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace League
 {
-    static class Champion
+    class Champion
     {
+
 		public static string IDtoName(int id)
 		{
 			switch (id)
