@@ -171,7 +171,8 @@ namespace LCUSharp
                 case HttpMethod.Delete:
                     return await httpClient.DeleteAsync(endpoint);
                 case HttpMethod.Patch:
-                    return await PatchAsync(httpClient, endpoint, new StringContent(json, Encoding.UTF8, "application/json"));
+                    string patchjson = data.ToString();
+                    return await PatchAsync(httpClient, endpoint, new StringContent(patchjson, Encoding.UTF8, "application/json"));
                 default:
                     throw new Exception("Unsupported HTTP method");
             }
@@ -202,44 +203,8 @@ namespace LCUSharp
                 Content = content
             };
 
-            Console.WriteLine("abbcc");
+            Console.WriteLine(request.Content.ReadAsStringAsync().Result);
             return await client.SendAsync(request);
-        }
-        public async static Task<HttpResponseMessage> PatchAsync(HttpClient client, Uri requestUri, HttpContent content)
-        {
-            var method = new System.Net.Http.HttpMethod("PATCH");
-
-            var request = new HttpRequestMessage(method, requestUri)
-            {
-                Content = content
-            };
-
-            Console.WriteLine("abb");
-            return await client.SendAsync(request);
-        }
-
-        public async static Task<HttpResponseMessage> PatchAsync(HttpClient client, string requestUri, HttpContent content, CancellationToken cancellationToken)
-        {
-            var method = new System.Net.Http.HttpMethod("PATCH");
-
-            var request = new HttpRequestMessage(method, requestUri)
-            {
-                Content = content
-            };
-            Console.WriteLine("abbcccccc");
-            return await client.SendAsync(request, cancellationToken);
-        }
-
-        public async static Task<HttpResponseMessage> PatchAsync(HttpClient client, Uri requestUri, HttpContent content, CancellationToken cancellationToken)
-        {
-            var method = new System.Net.Http.HttpMethod("PATCH");
-
-            var request = new HttpRequestMessage(method, requestUri)
-            {
-                Content = content
-            };
-            Console.WriteLine("abbbbbbbcc");
-            return await client.SendAsync(request, cancellationToken);
         }
     }
 }

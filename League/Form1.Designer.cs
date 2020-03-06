@@ -35,6 +35,8 @@
             this.ChampPref2 = new System.Windows.Forms.Label();
             this.formdebug = new System.Windows.Forms.RichTextBox();
             this.autoAccept = new System.Windows.Forms.CheckBox();
+            this.ChampPref3 = new System.Windows.Forms.Label();
+            this.ChampPref4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -110,11 +112,35 @@
             this.autoAccept.UseVisualStyleBackColor = true;
             this.autoAccept.CheckedChanged += new System.EventHandler(this.autoAccept_CheckedChanged);
             // 
+            // ChampPref3
+            // 
+            this.ChampPref3.AutoSize = true;
+            this.ChampPref3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChampPref3.Location = new System.Drawing.Point(27, 271);
+            this.ChampPref3.Name = "ChampPref3";
+            this.ChampPref3.Size = new System.Drawing.Size(60, 24);
+            this.ChampPref3.TabIndex = 18;
+            this.ChampPref3.Text = "label1";
+            this.ChampPref3.DoubleClick += new System.EventHandler(this.ChampPref3_DoubleClick);
+            // 
+            // ChampPref4
+            // 
+            this.ChampPref4.AutoSize = true;
+            this.ChampPref4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ChampPref4.Location = new System.Drawing.Point(27, 326);
+            this.ChampPref4.Name = "ChampPref4";
+            this.ChampPref4.Size = new System.Drawing.Size(60, 24);
+            this.ChampPref4.TabIndex = 19;
+            this.ChampPref4.Text = "label1";
+            this.ChampPref4.DoubleClick += new System.EventHandler(this.ChampPref4_DoubleClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 624);
+            this.Controls.Add(this.ChampPref4);
+            this.Controls.Add(this.ChampPref3);
             this.Controls.Add(this.autoAccept);
             this.Controls.Add(this.formdebug);
             this.Controls.Add(this.ChampPref2);
@@ -137,6 +163,8 @@
         private System.Windows.Forms.Label ChampPref2;
         private System.Windows.Forms.RichTextBox formdebug;
         private System.Windows.Forms.CheckBox autoAccept;
+        private System.Windows.Forms.Label ChampPref3;
+        private System.Windows.Forms.Label ChampPref4;
     }
 }
 

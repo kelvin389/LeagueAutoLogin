@@ -80,22 +80,31 @@ namespace League
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string champ = (string)listBox1.SelectedItem;
-            Champions.TryGetValue(champ, out selectedId);
-            selectedName = champ;
-            Form1.ChampionSelected();
+            SelectChamp();
         }
-        public void listBox1_DoubleClick(object sender, EventArgs e)
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            SelectChamp();
+        }
+
+        private void SelectChamp()
         {
             string champ = (string)listBox1.SelectedItem;
-            Champions.TryGetValue(champ, out selectedId);
-            selectedName = champ;
-            Form1.ChampionSelected();
+            if (Champions.TryGetValue(champ, out selectedId))
+            {
+                selectedName = champ;
+                Form1.ChampionSelected();
+            }
+            else
+            {
+                MessageBox.Show("error selecting champ");
+            }
         }
         private void ChampionForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Hide();
-            e.Cancel = true; // this cancels the close event.
+            e.Cancel = true; // cancel close event
+            textBox1.Text = "";
         }
 
         

@@ -14,7 +14,7 @@ namespace League
 
         private static ChampionForm ChampForm = new ChampionForm();
         private static int SelectingSlot = 0;
-        private static int[] PreferredChamps = new int[3];
+        private static int[] PreferredChamps = new int[5] { -1, -1, -1, -1, -1};
 
         private delegate void SafeCallDelegate(string label, string text);
 
@@ -94,7 +94,9 @@ namespace League
         }
 
         private void OnChampSelectSessionUpdate(object sender, LeagueEvent e)
-        {   
+        {
+            if (!e.Data["actions"].HasValues) return;
+
             WriteSafe("formdebug", e.Data.ToString());
             JToken bans = e.Data["bans"];
             var ourBans = bans["myTeamBans"];
@@ -110,58 +112,27 @@ namespace League
             var actionslist = actionstop.First().Children();
             var curchild = actionslist.First();
 
-            //Console.WriteLine(curchild);
             // iterate through all actions
             for (int i = 0; i < actionslist.Count(); i++)
             {
                 int curCellId = Convert.ToInt32(curchild["actorCellId"]);
                 int actionId = Convert.ToInt32(curchild["id"]);
+                bool myTurn = Convert.ToBoolean(curchild["isInProgress"]);
 
-                if (curCellId == localCellId)
+                if (curCellId == localCellId && myTurn)
                 {
-                    /*
-                    //string jsonput = "{
-                    "actorCellId": 0,
-                    "championId": 0,
-                    "completed": false,
-                    "id": 1,
-                    "isAllyAction": true,
-                    "isInProgress": true,
-                    "pickTurn": 1,
-                    "type": "pick"
-                    "
-                    */
-
-                    // hover champ
-                    string str = "{\"championId\": 1}";
-                    
-                    Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(str));
-                    //API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, Newtonsoft.Json.JsonConvert.SerializeObject(str));
-                    API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
-
-                    Console.WriteLine("a");
-
-                    // lock in
+                    for (int j = 0; j < PreferredChamps.Length; j++)
+                    {
+                        if (PreferredChamps[j] != -1 && !UnavailableChampsID.Contains(PreferredChamps[j]))
+                        {
+                            // lock in based on order of prefernce
+                            string str = "{\"actorCellId\": " + curCellId + ", \"championId\":" + PreferredChamps[j] + ", \"completed\": true, \"id\": " + actionId + ", \"type\": \"string\"}";
+                            API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
+                            break;
+                        }
+                    }
                 }
-                Console.WriteLine("B" + curCellId);
             }
-
-            /*
-             * Get actions from session
-             * for (int i = 0; i < actions.length; i++)
-             * {
-             *     if (actions.getslotid == localplayerslot && isinprogress)
-             *     {
-             *         for (int j = 0; j < preferredchamps.length; j++)
-             *         {
-             *             if (!unavailablechamps.contains(preferredchamps[j]))
-             *             {
-             *                 API.client.sendhttprequest(post, /api/champ-select/lock-in, preferredchamps[j]);
-             *             }
-             *         }
-             *     }
-             * }
-             */
         }
 
         private static void ParseBans(JToken data)
@@ -186,13 +157,6 @@ namespace League
                     UnavailableChampsID.Add(id);
                 }
             }
-
-            /*
-            for (int i = 0; i < UnavailableChampsID.Count; i++)
-            {
-                Console.WriteLine(UnavailableChampsID[i]);
-            }
-            */
 
         }
 
@@ -249,6 +213,18 @@ namespace League
         private void ChampPref2_DoubleClick(object sender, EventArgs e)
         {
             SelectingSlot = 2;
+            ChampForm.Show();
+        }
+
+        private void ChampPref3_DoubleClick(object sender, EventArgs e)
+        {
+            SelectingSlot = 3;
+            ChampForm.Show();
+        }
+
+        private void ChampPref4_DoubleClick(object sender, EventArgs e)
+        {
+            SelectingSlot = 4;
             ChampForm.Show();
         }
 

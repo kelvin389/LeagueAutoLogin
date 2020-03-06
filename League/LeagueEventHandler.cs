@@ -68,7 +68,6 @@ namespace League
 
         private static void OnMessage(object sender, MessageEventArgs e)
         {
-            Console.WriteLine("A");
             // Check if the message is json received from the client
             if (e.IsText)
             {
