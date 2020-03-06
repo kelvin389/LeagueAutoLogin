@@ -41,6 +41,7 @@
             this.eChamp1 = new System.Windows.Forms.Label();
             this.eChamp0 = new System.Windows.Forms.Label();
             this.formdebug = new System.Windows.Forms.RichTextBox();
+            this.autoAccept = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label2
@@ -171,11 +172,24 @@
             this.formdebug.TabIndex = 16;
             this.formdebug.Text = "";
             // 
+            // autoAccept
+            // 
+            this.autoAccept.AutoSize = true;
+            this.autoAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoAccept.Location = new System.Drawing.Point(61, 398);
+            this.autoAccept.Name = "autoAccept";
+            this.autoAccept.Size = new System.Drawing.Size(196, 28);
+            this.autoAccept.TabIndex = 17;
+            this.autoAccept.Text = "Auto Accept Queue";
+            this.autoAccept.UseVisualStyleBackColor = true;
+            this.autoAccept.CheckedChanged += new System.EventHandler(this.autoAccept_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 624);
+            this.Controls.Add(this.autoAccept);
             this.Controls.Add(this.formdebug);
             this.Controls.Add(this.eChamp4);
             this.Controls.Add(this.eChamp3);
@@ -210,6 +224,7 @@
         private System.Windows.Forms.Label eChamp1;
         private System.Windows.Forms.Label eChamp0;
         private System.Windows.Forms.RichTextBox formdebug;
+        private System.Windows.Forms.CheckBox autoAccept;
     }
 }
 

@@ -16,10 +16,13 @@ namespace League
         // event handlers
         private event EventHandler<LeagueEvent> ChampSelectSessionUpdated;
         private event EventHandler<LeagueEvent> GameFlowUpdated;
+        private event EventHandler<LeagueEvent> ReadyCheckPopped;
 
         private static List<int> UnavailableChampsID = new List<int>();
 
         private bool inChampSelect = false;
+
+        private bool autoAcceptQueue = false;
 
         public Form1()
         {
@@ -37,7 +40,6 @@ namespace League
         private async void Start()
         {
             status.Text = "Waiting for League...";
-            Console.WriteLine("Waiting for League...");
 
             // connect to client by path
             API.client = await LeagueClient.Connect();
@@ -58,11 +60,23 @@ namespace League
             phase = phase.Replace("\"", ""); // remove quotes
             if (phase == "ChampSelect") inChampSelect = true;
 
+            // subscribe to events
             ChampSelectSessionUpdated += OnChampSelectSessionUpdate;
             LeagueEventHandler.Subscribe("/lol-champ-select/v1/session", ChampSelectSessionUpdated);
 
             GameFlowUpdated += OnGameFlowUpdate;
             LeagueEventHandler.Subscribe("/lol-gameflow/v1/gameflow-phase", GameFlowUpdated);
+
+            ReadyCheckPopped += OnReadyCheckPop;
+            LeagueEventHandler.Subscribe("/lol-gameflow/v1/gameflow-phase", ReadyCheckPopped);
+        }
+
+        private void OnReadyCheckPop(object sender, LeagueEvent e)
+        {
+            if (autoAcceptQueue)
+            {
+                API.client.MakeApiRequest(HttpMethod.Post, "/lol-matchmaking/v1/ready-check/decline");
+            }
         }
 
         private void OnGameFlowUpdate(object sender, LeagueEvent e)
@@ -140,6 +154,10 @@ namespace League
             Application.Exit();
         }
 
+        private void autoAccept_CheckedChanged(object sender, EventArgs e)
+        {
+            autoAcceptQueue = autoAccept.Checked;
+        }
     }
 
     static class API
