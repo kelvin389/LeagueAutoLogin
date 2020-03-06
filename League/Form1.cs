@@ -78,7 +78,7 @@ namespace League
             LeagueEventHandler.Subscribe("/lol-gameflow/v1/gameflow-phase", GameFlowUpdated);
 
             ReadyCheckPopped += OnReadyCheckPop;
-            LeagueEventHandler.Subscribe("/lol-gameflow/v1/gameflow-phase", ReadyCheckPopped);
+            LeagueEventHandler.Subscribe("/lol-matchmaking/v1/ready-check", ReadyCheckPopped);
         }
 
         private void OnReadyCheckPop(object sender, LeagueEvent e)
@@ -205,3 +205,20 @@ namespace League
     }
 
 }
+
+/*
+ * Get actions from session
+ * for (int i = 0; i < actions.length; i++)
+ * {
+ *     if (actions.getslotid == localplayerslot && isinprogress)
+ *     {
+ *         for (int j = 0; j < preferredchamps.length; j++)
+ *         {
+ *             if (!unavailablechamps.contains(preferredchamps[j]))
+ *             {
+ *                 API.client.sendhttprequest(post, /api/champ-select/lock-in, preferredchamps[j]);
+ *             }
+ *         }
+ *     }
+ * }
+ */

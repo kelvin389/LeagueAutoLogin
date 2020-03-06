@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * https://github.com/Najsr/League-Of-Legends-Champions-ID-List/blob/master/list.php
+ */
 
 namespace League
 {
