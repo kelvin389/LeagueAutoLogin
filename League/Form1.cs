@@ -130,18 +130,23 @@ namespace League
 
             JToken actionstop = e.Data["actions"];
 
-            var actionslist = actionstop.First().Children();
-            var curchild = actionslist.First();
-
             // iterate through all actions
-            for (int i = 0; i < actionslist.Count(); i++)
+            for (int i = 0; i < actionstop.Count(); i++)
             {
+                var curchild = actionstop.ElementAt(i).First;
+
                 int curCellId = Convert.ToInt32(curchild["actorCellId"]);
                 int actionId = Convert.ToInt32(curchild["id"]);
                 bool myTurn = Convert.ToBoolean(curchild["isInProgress"]);
-
-                if (curCellId == localCellId && myTurn)
+                string type = curchild["type"].ToString();
+                Console.WriteLine(curCellId);
+                Console.WriteLine(localCellId);
+                Console.WriteLine(myTurn);
+                Console.WriteLine(type);
+                Console.WriteLine();
+                if (curCellId == localCellId && myTurn && type == "pick")
                 {
+                    
                     for (int j = 0; j < PreferredChamps.Length; j++)
                     {
                         if (PreferredChamps[j] != -1 && !UnavailableChampsID.Contains(PreferredChamps[j]))
