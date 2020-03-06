@@ -13,7 +13,6 @@ namespace League
         private static readonly Dictionary<string, List<EventHandler<LeagueEvent>>> _subscribers = new Dictionary<string, List<EventHandler<LeagueEvent>>>();
 
         public static EventHandler<LeagueEvent> MessageReceived { get; set; }
-        public static EventHandler<string> ErrorReceived { get; set; }
 
         private static WebSocket _webSocket;
         private static bool subscribed = false;
@@ -50,14 +49,13 @@ namespace League
             string token = Encoding.UTF8.GetString(tokenBytes); // convert byte array to utf8 string
             token = token.Substring(token.IndexOf(":") + 1); // remove "riot:" from string
 
-            Console.WriteLine(port);
-            Console.WriteLine(token);
-
+            // set socket settings
             _webSocket = new WebSocket($"wss://127.0.0.1:{port}/", "wamp");
             _webSocket.SetCredentials("riot", token, true);
             _webSocket.SslConfiguration.EnabledSslProtocols = SslProtocols.Tls12;
             _webSocket.SslConfiguration.ServerCertificateValidationCallback = (response, cert, chain, errors) => true;
 
+            // subscribe to errors and responses
             _webSocket.OnError += OnError;
             _webSocket.OnMessage += OnMessage;
         }

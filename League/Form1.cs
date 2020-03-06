@@ -15,8 +15,11 @@ namespace League
 
         // event handlers
         private event EventHandler<LeagueEvent> ChampSelectSessionUpdated;
+        private event EventHandler<LeagueEvent> GameFlowUpdated;
 
         private static List<int> UnavailableChampsID = new List<int>();
+
+        private bool inChampSelect = false;
 
         public Form1()
         {
@@ -44,13 +47,38 @@ namespace League
 
             status.Text = "Connecting to client...";
 
-            // subscribe to events via websocket
+            // subscribe to all events via websocket
             LeagueEventHandler.Connect();
 
             status.Text = "Running";
 
+            // check if we are already in a champ select
+            var gameflow = await API.client.MakeApiRequest(HttpMethod.Get, "/lol-gameflow/v1/gameflow-phase");
+            string phase = await gameflow.Content.ReadAsStringAsync();
+            phase = phase.Replace("\"", ""); // remove quotes
+            if (phase == "ChampSelect") inChampSelect = true;
+
             ChampSelectSessionUpdated += OnChampSelectSessionUpdate;
             LeagueEventHandler.Subscribe("/lol-champ-select/v1/session", ChampSelectSessionUpdated);
+
+            GameFlowUpdated += OnGameFlowUpdate;
+            LeagueEventHandler.Subscribe("/lol-gameflow/v1/gameflow-phase", GameFlowUpdated);
+        }
+
+        private void OnGameFlowUpdate(object sender, LeagueEvent e)
+        {
+            string phase = e.Data.ToString();
+            
+            // returned to lobby for whatever reason
+            if (inChampSelect && phase == "Lobby")
+            {
+                inChampSelect = false;
+                UnavailableChampsID.Clear();
+            }
+            else if (!inChampSelect && phase == "ChampSelect") 
+            {
+                inChampSelect = true;
+            }
         }
 
         private void OnChampSelectSessionUpdate(object sender, LeagueEvent e)
