@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 using LCUSharp;
 using Newtonsoft.Json.Linq;
@@ -15,6 +16,9 @@ namespace League
         private static ChampionForm ChampForm = new ChampionForm();
         private static int SelectingSlot = 0;
         private static int[] PreferredChamps = new int[5];
+        private static int[] PreferredBans = new int[3];
+
+        private static bool selectingBan = false;
 
         private delegate void SafeCallDelegate(string label, string text);
 
@@ -82,14 +86,26 @@ namespace League
             PreferredChamps[2] = Properties.Settings.Default.champ2;
             PreferredChamps[3] = Properties.Settings.Default.champ3;
             PreferredChamps[4] = Properties.Settings.Default.champ4;
+            PreferredBans[0] = Properties.Settings.Default.ban0;
+            PreferredBans[1] = Properties.Settings.Default.ban1;
+            PreferredBans[2] = Properties.Settings.Default.ban2;
 
-            // update labels to previous settings labels
+            // update champion pref labels to previous settings labels
             for (int i = 0; i < PreferredChamps.Length; i++)
             {
                 string labelname = "ChampPref" + i;
 
                 Label lb = Controls.Find(labelname, false).First() as Label;
                 lb.Text = Champion.IDtoName(PreferredChamps[i]);
+            }
+
+            // update ban pref labels to previous settings labels
+            for (int i = 0; i < PreferredBans.Length; i++)
+            {
+                string labelname = "Ban" + i;
+
+                Label lb = Controls.Find(labelname, false).First() as Label;
+                lb.Text = Champion.IDtoName(PreferredBans[i]);
             }
         }
         
@@ -130,23 +146,24 @@ namespace League
 
             JToken actionstop = e.Data["actions"];
 
-            // iterate through all actions
-            for (int i = 0; i < actionstop.Count(); i++)
-            {
-                var curchild = actionstop.ElementAt(i).First;
+            // child is always last action
+            var curchild = actionstop.ElementAt(actionstop.Count() - 1).First;
 
-                int curCellId = Convert.ToInt32(curchild["actorCellId"]);
-                int actionId = Convert.ToInt32(curchild["id"]);
-                bool myTurn = Convert.ToBoolean(curchild["isInProgress"]);
-                string type = curchild["type"].ToString();
-                Console.WriteLine(curCellId);
-                Console.WriteLine(localCellId);
-                Console.WriteLine(myTurn);
-                Console.WriteLine(type);
-                Console.WriteLine();
-                if (curCellId == localCellId && myTurn && type == "pick")
+            int curCellId = Convert.ToInt32(curchild["actorCellId"]);
+            int actionId = Convert.ToInt32(curchild["id"]);
+            bool myTurn = Convert.ToBoolean(curchild["isInProgress"]);
+            string type = curchild["type"].ToString();
+            Console.WriteLine(curCellId);
+            Console.WriteLine(localCellId);
+            Console.WriteLine(myTurn);
+            Console.WriteLine(type);
+            Console.WriteLine(actionstop.Count() - 1);
+            Console.WriteLine();
+            if (curCellId == localCellId && myTurn)
+            {
+                if (type == "pick")
                 {
-                    
+                    // automatically pick based on preffered list
                     for (int j = 0; j < PreferredChamps.Length; j++)
                     {
                         if (PreferredChamps[j] != -1 && !UnavailableChampsID.Contains(PreferredChamps[j]))
@@ -158,6 +175,21 @@ namespace League
                         }
                     }
                 }
+                else if (type == "ban")
+                {
+                    // automatically ban based on preferred list
+                    for (int j = 0; j < PreferredBans.Length; j++)
+                    {
+                        if (PreferredBans[j] != -1 && !UnavailableChampsID.Contains(PreferredBans[j]))
+                        {
+                            // lock in based on order of prefernce
+                            string str = "{\"actorCellId\": " + curCellId + ", \"championId\":" + PreferredBans[j] + ", \"completed\": true, \"id\": " + actionId + ", \"type\": \"string\"}";
+                            API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
+                            break;
+                        }
+                    }
+                }
+                
             }
         }
 
@@ -217,62 +249,115 @@ namespace League
         public static void ChampionSelected()
         {
             ChampForm.Close();
-            PreferredChamps[SelectingSlot] = ChampForm.selectedId;
 
-            // update label
-            string label = "ChampPref" + SelectingSlot;
-            Label lb = form.Controls.Find(label, false).FirstOrDefault() as Label;
-            lb.Text = Champion.IDtoName(ChampForm.selectedId);
-
-            // save settings
-            switch (SelectingSlot)
+            if (selectingBan)
             {
-                case 0:
-                    Properties.Settings.Default.champ0 = ChampForm.selectedId;
-                    break;
-                case 1:
-                    Properties.Settings.Default.champ1 = ChampForm.selectedId;
-                    break;
-                case 2:
-                    Properties.Settings.Default.champ2 = ChampForm.selectedId;
-                    break;
-                case 3:
-                    Properties.Settings.Default.champ3 = ChampForm.selectedId;
-                    break;
-                case 4:
-                    Properties.Settings.Default.champ4 = ChampForm.selectedId;
-                    break;
+                PreferredBans[SelectingSlot] = ChampForm.selectedId;
+
+                // update label
+                string label = "Ban" + SelectingSlot;
+                Label lb = form.Controls.Find(label, false).FirstOrDefault() as Label;
+                lb.Text = Champion.IDtoName(ChampForm.selectedId);
+
+                // update settings
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.ban0 = ChampForm.selectedId;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.ban1 = ChampForm.selectedId;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.ban2 = ChampForm.selectedId;
+                        break;
+                }
             }
+            else
+            {
+                PreferredChamps[SelectingSlot] = ChampForm.selectedId;
+
+                // update label
+                string label = "ChampPref" + SelectingSlot;
+                Label lb = form.Controls.Find(label, false).FirstOrDefault() as Label;
+                lb.Text = Champion.IDtoName(ChampForm.selectedId);
+
+                // update settings
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.champ0 = ChampForm.selectedId;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.champ1 = ChampForm.selectedId;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.champ2 = ChampForm.selectedId;
+                        break;
+                    case 3:
+                        Properties.Settings.Default.champ3 = ChampForm.selectedId;
+                        break;
+                    case 4:
+                        Properties.Settings.Default.champ4 = ChampForm.selectedId;
+                        break;
+                }
+            }
+            // save settings
             Properties.Settings.Default.Save();
         }
 
         private void ChampPref0_DoubleClick(object sender, EventArgs e)
         {
             SelectingSlot = 0;
+            selectingBan = false;
             ChampForm.Show();
         }
 
         private void ChampPref1_DoubleClick(object sender, EventArgs e)
         {
             SelectingSlot = 1;
+            selectingBan = false;
             ChampForm.Show();
         }
 
         private void ChampPref2_DoubleClick(object sender, EventArgs e)
         {
             SelectingSlot = 2;
+            selectingBan = false;
             ChampForm.Show();
         }
 
         private void ChampPref3_DoubleClick(object sender, EventArgs e)
         {
             SelectingSlot = 3;
+            selectingBan = false;
             ChampForm.Show();
         }
 
         private void ChampPref4_DoubleClick(object sender, EventArgs e)
         {
             SelectingSlot = 4;
+            selectingBan = false;
+            ChampForm.Show();
+        }
+
+        private void Ban0_DoubleClick(object sender, EventArgs e)
+        {
+            SelectingSlot = 0;
+            selectingBan = true;
+            ChampForm.Show();
+        }
+
+        private void Ban1_DoubleClick(object sender, EventArgs e)
+        {
+            SelectingSlot = 1;
+            selectingBan = true;
+            ChampForm.Show();
+        }
+        private void Ban2_DoubleClick(object sender, EventArgs e)
+        {
+            SelectingSlot = 2;
+            selectingBan = true;
             ChampForm.Show();
         }
 

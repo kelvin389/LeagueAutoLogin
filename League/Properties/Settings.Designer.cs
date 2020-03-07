@@ -82,5 +82,41 @@ namespace League.Properties {
                 this["champ4"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ban0 {
+            get {
+                return ((int)(this["ban0"]));
+            }
+            set {
+                this["ban0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ban1 {
+            get {
+                return ((int)(this["ban1"]));
+            }
+            set {
+                this["ban1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ban2 {
+            get {
+                return ((int)(this["ban2"]));
+            }
+            set {
+                this["ban2"] = value;
+            }
+        }
     }
 }

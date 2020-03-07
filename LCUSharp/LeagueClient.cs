@@ -203,7 +203,6 @@ namespace LCUSharp
                 Content = content
             };
 
-            Console.WriteLine(request.Content.ReadAsStringAsync().Result);
             return await client.SendAsync(request);
         }
     }

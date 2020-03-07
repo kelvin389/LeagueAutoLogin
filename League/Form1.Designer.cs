@@ -37,6 +37,9 @@
             this.autoAccept = new System.Windows.Forms.CheckBox();
             this.ChampPref3 = new System.Windows.Forms.Label();
             this.ChampPref4 = new System.Windows.Forms.Label();
+            this.Ban0 = new System.Windows.Forms.Label();
+            this.Ban1 = new System.Windows.Forms.Label();
+            this.Ban2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label2
@@ -104,7 +107,7 @@
             // 
             this.autoAccept.AutoSize = true;
             this.autoAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoAccept.Location = new System.Drawing.Point(61, 398);
+            this.autoAccept.Location = new System.Drawing.Point(64, 571);
             this.autoAccept.Name = "autoAccept";
             this.autoAccept.Size = new System.Drawing.Size(196, 28);
             this.autoAccept.TabIndex = 17;
@@ -134,11 +137,47 @@
             this.ChampPref4.Text = "label1";
             this.ChampPref4.DoubleClick += new System.EventHandler(this.ChampPref4_DoubleClick);
             // 
+            // Ban0
+            // 
+            this.Ban0.AutoSize = true;
+            this.Ban0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ban0.Location = new System.Drawing.Point(200, 124);
+            this.Ban0.Name = "Ban0";
+            this.Ban0.Size = new System.Drawing.Size(60, 24);
+            this.Ban0.TabIndex = 20;
+            this.Ban0.Text = "label1";
+            this.Ban0.DoubleClick += new System.EventHandler(this.Ban0_DoubleClick);
+            // 
+            // Ban1
+            // 
+            this.Ban1.AutoSize = true;
+            this.Ban1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ban1.Location = new System.Drawing.Point(200, 170);
+            this.Ban1.Name = "Ban1";
+            this.Ban1.Size = new System.Drawing.Size(60, 24);
+            this.Ban1.TabIndex = 21;
+            this.Ban1.Text = "label1";
+            this.Ban1.DoubleClick += new System.EventHandler(this.Ban1_DoubleClick);
+            // 
+            // Ban2
+            // 
+            this.Ban2.AutoSize = true;
+            this.Ban2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ban2.Location = new System.Drawing.Point(200, 219);
+            this.Ban2.Name = "Ban2";
+            this.Ban2.Size = new System.Drawing.Size(60, 24);
+            this.Ban2.TabIndex = 22;
+            this.Ban2.Text = "label1";
+            this.Ban2.DoubleClick += new System.EventHandler(this.Ban2_DoubleClick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 624);
+            this.Controls.Add(this.Ban2);
+            this.Controls.Add(this.Ban1);
+            this.Controls.Add(this.Ban0);
             this.Controls.Add(this.ChampPref4);
             this.Controls.Add(this.ChampPref3);
             this.Controls.Add(this.autoAccept);
@@ -165,6 +204,9 @@
         private System.Windows.Forms.CheckBox autoAccept;
         private System.Windows.Forms.Label ChampPref3;
         private System.Windows.Forms.Label ChampPref4;
+        private System.Windows.Forms.Label Ban0;
+        private System.Windows.Forms.Label Ban1;
+        private System.Windows.Forms.Label Ban2;
     }
 }
 
