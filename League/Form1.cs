@@ -109,7 +109,6 @@ namespace League
             }
         }
         
-
         private void OnGameFlowUpdate(object sender, LeagueEvent e)
         {
             string phase = e.Data.ToString();
@@ -132,6 +131,7 @@ namespace League
 
         private void OnChampSelectSessionUpdate(object sender, LeagueEvent e)
         {
+            // exit if no actions (usually when leaving champ select)
             if (!e.Data["actions"].HasValues) return;
 
             WriteSafe("formdebug", e.Data.ToString());
@@ -146,50 +146,50 @@ namespace League
 
             JToken actionstop = e.Data["actions"];
 
-            // child is always last action
-            var curchild = actionstop.ElementAt(actionstop.Count() - 1).First;
-
-            int curCellId = Convert.ToInt32(curchild["actorCellId"]);
-            int actionId = Convert.ToInt32(curchild["id"]);
-            bool myTurn = Convert.ToBoolean(curchild["isInProgress"]);
-            string type = curchild["type"].ToString();
-            Console.WriteLine(curCellId);
-            Console.WriteLine(localCellId);
-            Console.WriteLine(myTurn);
-            Console.WriteLine(type);
-            Console.WriteLine(actionstop.Count() - 1);
-            Console.WriteLine();
-            if (curCellId == localCellId && myTurn)
+            // iterate through each action (we have to do this becaused 1 action
+            // is generated for each player at the same time meaning the last action
+            // is only your action if you are last pick)
+            for (int i = actionstop.Count() - 1; i >= 0; i--)
             {
-                if (type == "pick")
+                var curchild = actionstop.ElementAt(i).First;
+
+                int curCellId = Convert.ToInt32(curchild["actorCellId"]);
+                int actionId = Convert.ToInt32(curchild["id"]);
+                bool myTurn = Convert.ToBoolean(curchild["isInProgress"]);
+                string type = curchild["type"].ToString();
+
+                if (curCellId == localCellId && myTurn)
                 {
-                    // automatically pick based on preffered list
-                    for (int j = 0; j < PreferredChamps.Length; j++)
+                    if (type == "pick")
                     {
-                        if (PreferredChamps[j] != -1 && !UnavailableChampsID.Contains(PreferredChamps[j]))
+                        // automatically pick based on preffered list
+                        for (int j = 0; j < PreferredChamps.Length; j++)
                         {
-                            // lock in based on order of prefernce
-                            string str = "{\"actorCellId\": " + curCellId + ", \"championId\":" + PreferredChamps[j] + ", \"completed\": true, \"id\": " + actionId + ", \"type\": \"string\"}";
-                            API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
-                            break;
+                            if (PreferredChamps[j] != -1 && !UnavailableChampsID.Contains(PreferredChamps[j]))
+                            {
+                                // lock in based on order of prefernce
+                                string str = "{\"actorCellId\": " + curCellId + ", \"championId\":" + PreferredChamps[j] + ", \"completed\": true, \"id\": " + actionId + ", \"type\": \"string\"}";
+                                API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
+                                break;
+                            }
                         }
                     }
-                }
-                else if (type == "ban")
-                {
-                    // automatically ban based on preferred list
-                    for (int j = 0; j < PreferredBans.Length; j++)
+                    else if (type == "ban")
                     {
-                        if (PreferredBans[j] != -1 && !UnavailableChampsID.Contains(PreferredBans[j]))
+                        // automatically ban based on preferred list
+                        for (int j = 0; j < PreferredBans.Length; j++)
                         {
-                            // lock in based on order of prefernce
-                            string str = "{\"actorCellId\": " + curCellId + ", \"championId\":" + PreferredBans[j] + ", \"completed\": true, \"id\": " + actionId + ", \"type\": \"string\"}";
-                            API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
-                            break;
+                            if (PreferredBans[j] != -1 && !UnavailableChampsID.Contains(PreferredBans[j]))
+                            {
+                                // lock in based on order of prefernce
+                                string str = "{\"actorCellId\": " + curCellId + ", \"championId\":" + PreferredBans[j] + ", \"completed\": true, \"id\": " + actionId + ", \"type\": \"string\"}";
+                                API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
+                                break;
+                            }
                         }
                     }
+
                 }
-                
             }
         }
 

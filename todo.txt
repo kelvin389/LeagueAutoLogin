@@ -1,0 +1,2 @@
+PROBLEMS:
+only bans 2 champs when in a solo champ select
