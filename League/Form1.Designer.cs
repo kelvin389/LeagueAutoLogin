@@ -40,6 +40,11 @@
             this.Ban0 = new System.Windows.Forms.Label();
             this.Ban1 = new System.Windows.Forms.Label();
             this.Ban2 = new System.Windows.Forms.Label();
+            this.Runes0 = new System.Windows.Forms.Button();
+            this.Runes1 = new System.Windows.Forms.Button();
+            this.Runes2 = new System.Windows.Forms.Button();
+            this.Runes3 = new System.Windows.Forms.Button();
+            this.Runes4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -170,11 +175,66 @@
             this.Ban2.Text = "label1";
             this.Ban2.DoubleClick += new System.EventHandler(this.Ban2_DoubleClick);
             // 
+            // Runes0
+            // 
+            this.Runes0.Location = new System.Drawing.Point(94, 124);
+            this.Runes0.Name = "Runes0";
+            this.Runes0.Size = new System.Drawing.Size(75, 23);
+            this.Runes0.TabIndex = 23;
+            this.Runes0.Text = "button1";
+            this.Runes0.UseVisualStyleBackColor = true;
+            this.Runes0.Click += new System.EventHandler(this.Runes0_Click);
+            // 
+            // Runes1
+            // 
+            this.Runes1.Location = new System.Drawing.Point(94, 173);
+            this.Runes1.Name = "Runes1";
+            this.Runes1.Size = new System.Drawing.Size(75, 23);
+            this.Runes1.TabIndex = 24;
+            this.Runes1.Text = "button1";
+            this.Runes1.UseVisualStyleBackColor = true;
+            this.Runes1.Click += new System.EventHandler(this.Runes1_Click);
+            // 
+            // Runes2
+            // 
+            this.Runes2.Location = new System.Drawing.Point(94, 220);
+            this.Runes2.Name = "Runes2";
+            this.Runes2.Size = new System.Drawing.Size(75, 23);
+            this.Runes2.TabIndex = 25;
+            this.Runes2.Text = "button1";
+            this.Runes2.UseVisualStyleBackColor = true;
+            this.Runes2.Click += new System.EventHandler(this.Runes2_Click);
+            // 
+            // Runes3
+            // 
+            this.Runes3.Location = new System.Drawing.Point(94, 274);
+            this.Runes3.Name = "Runes3";
+            this.Runes3.Size = new System.Drawing.Size(75, 23);
+            this.Runes3.TabIndex = 26;
+            this.Runes3.Text = "button1";
+            this.Runes3.UseVisualStyleBackColor = true;
+            this.Runes3.Click += new System.EventHandler(this.Runes3_Click);
+            // 
+            // Runes4
+            // 
+            this.Runes4.Location = new System.Drawing.Point(94, 326);
+            this.Runes4.Name = "Runes4";
+            this.Runes4.Size = new System.Drawing.Size(75, 23);
+            this.Runes4.TabIndex = 27;
+            this.Runes4.Text = "button1";
+            this.Runes4.UseVisualStyleBackColor = true;
+            this.Runes4.Click += new System.EventHandler(this.Runes4_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 624);
+            this.Controls.Add(this.Runes4);
+            this.Controls.Add(this.Runes3);
+            this.Controls.Add(this.Runes2);
+            this.Controls.Add(this.Runes1);
+            this.Controls.Add(this.Runes0);
             this.Controls.Add(this.Ban2);
             this.Controls.Add(this.Ban1);
             this.Controls.Add(this.Ban0);
@@ -207,6 +267,11 @@
         private System.Windows.Forms.Label Ban0;
         private System.Windows.Forms.Label Ban1;
         private System.Windows.Forms.Label Ban2;
+        private System.Windows.Forms.Button Runes0;
+        private System.Windows.Forms.Button Runes1;
+        private System.Windows.Forms.Button Runes2;
+        private System.Windows.Forms.Button Runes3;
+        private System.Windows.Forms.Button Runes4;
     }
 }
 

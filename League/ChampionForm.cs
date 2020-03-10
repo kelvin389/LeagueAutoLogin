@@ -23,13 +23,14 @@ namespace League
         public ChampionForm()
         {
             InitializeComponent();
+            ActiveControl = textBox1;
             Start();
         }
 
         private void Start()
         {
             //string jsondir = Directory.GetCurrentDirectory() + "/data/champion.json";
-            string jsondir = "C:/Users/kelvi/Documents/Visual Studio 2019/Projects/League/League/data/champion.json";
+            string jsondir = "C:/Users/kelvi/Documents/Visual Studio 2019/Projects/League/League/resources/champion.json";
             string json = System.IO.File.ReadAllText(jsondir);
 
             // very top of json file
@@ -76,6 +77,7 @@ namespace League
                     listBox1.Items.Add(name);
                 }
             }
+            if (listBox1.Items.Count != 0) listBox1.SelectedIndex = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -90,14 +92,14 @@ namespace League
         private void SelectChamp()
         {
             string champ = (string)listBox1.SelectedItem;
-            if (Champions.TryGetValue(champ, out selectedId))
-            {
+            try {
+                Champions.TryGetValue(champ, out selectedId);
                 selectedName = champ;
                 Form1.ChampionSelected();
             }
-            else
+            catch (Exception e)
             {
-                MessageBox.Show("error selecting champ");
+                MessageBox.Show(e.Message);
             }
         }
         private void ChampionForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -105,6 +107,7 @@ namespace League
             Hide();
             e.Cancel = true; // cancel close event
             textBox1.Text = "";
+            ActiveControl = textBox1;
         }
 
         

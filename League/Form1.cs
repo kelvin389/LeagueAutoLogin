@@ -14,6 +14,7 @@ namespace League
         public static Form form;
 
         private static ChampionForm ChampForm = new ChampionForm();
+        private static RunesForm RuneForm = new RunesForm();
         private static int SelectingSlot = 0;
         private static int[] PreferredChamps = new int[5];
         private static int[] PreferredBans = new int[3];
@@ -359,6 +360,36 @@ namespace League
             SelectingSlot = 2;
             selectingBan = true;
             ChampForm.Show();
+        }
+
+        private void Runes0_Click(object sender, EventArgs e)
+        {
+            SelectingSlot = 0;
+            RuneForm.Show();
+        }
+
+        private void Runes1_Click(object sender, EventArgs e)
+        {
+            SelectingSlot = 1;
+            RuneForm.Show();
+        }
+
+        private void Runes2_Click(object sender, EventArgs e)
+        {
+            SelectingSlot = 2;
+            RuneForm.Show();
+        }
+
+        private void Runes3_Click(object sender, EventArgs e)
+        {
+            SelectingSlot = 3;
+            RuneForm.Show();
+        }
+
+        private void Runes4_Click(object sender, EventArgs e)
+        {
+            SelectingSlot = 4;
+            RuneForm.Show();
         }
 
     }

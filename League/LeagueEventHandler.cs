@@ -43,8 +43,11 @@ namespace League
         public static void UnsubscribeSocket()
         {
             // unsubscribe from all events
-            if (subscribed) _webSocket.Send("[6, \"OnJsonApiEvent\"]");
-            _webSocket.Close();
+            if (subscribed && _webSocket.IsAlive)
+            {
+                _webSocket.Send("[6, \"OnJsonApiEvent\"]");
+                _webSocket.Close();
+            }
         }
 
         private static void Init()
