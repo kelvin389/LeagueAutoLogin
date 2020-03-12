@@ -186,13 +186,12 @@ namespace League
                                 string str = "{\"actorCellId\": " + curCellId + ", \"championId\":" + PreferredBans[j] + ", \"completed\": true, \"id\": " + actionId + ", \"type\": \"string\"}";
                                 API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
                                 break;
-                            }
-                        }
-                    }
-
-                }
-            }
-        }
+                            } //if
+                        } //for
+                    } // else if
+                } // if
+            } // for
+        } //OnChampSelectSessionUpdate
 
         private static void ParseBans(JToken data)
         {
