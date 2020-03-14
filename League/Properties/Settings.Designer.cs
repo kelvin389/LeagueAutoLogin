@@ -370,5 +370,65 @@ namespace League.Properties {
                 this["curRole"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int general0 {
+            get {
+                return ((int)(this["general0"]));
+            }
+            set {
+                this["general0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int general1 {
+            get {
+                return ((int)(this["general1"]));
+            }
+            set {
+                this["general1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int general2 {
+            get {
+                return ((int)(this["general2"]));
+            }
+            set {
+                this["general2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int general3 {
+            get {
+                return ((int)(this["general3"]));
+            }
+            set {
+                this["general3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int general4 {
+            get {
+                return ((int)(this["general4"]));
+            }
+            set {
+                this["general4"] = value;
+            }
+        }
     }
 }

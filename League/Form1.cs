@@ -20,6 +20,7 @@ namespace League
         private static int CurrentRole = 0;
 
         private static int PrefPoolSize = 5;
+        private static int[] PreferredGeneral = new int[PrefPoolSize];
         private static int[] PreferredTops = new int[PrefPoolSize];
         private static int[] PreferredJgs = new int[PrefPoolSize];
         private static int[] PreferredMids = new int[PrefPoolSize];
@@ -47,6 +48,7 @@ namespace League
             InitializeComponent();
             form = this;
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
+            comboBox1.SelectedIndex = 0;
             Start();
         }
 
@@ -91,6 +93,12 @@ namespace League
         private void LoadSettings()
         {
             // get saved settings
+            PreferredGeneral[0] = Properties.Settings.Default.general0;
+            PreferredGeneral[1] = Properties.Settings.Default.general1;
+            PreferredGeneral[2] = Properties.Settings.Default.general2;
+            PreferredGeneral[3] = Properties.Settings.Default.general3;
+            PreferredGeneral[4] = Properties.Settings.Default.general4;
+
             PreferredTops[0] = Properties.Settings.Default.top0;
             PreferredTops[1] = Properties.Settings.Default.top1;
             PreferredTops[2] = Properties.Settings.Default.top2;
@@ -165,6 +173,7 @@ namespace League
                 case 2: return PreferredMids;
                 case 3: return PreferredADCs;
                 case 4: return PreferredSups;
+                case 5: return PreferredGeneral;
                 default: return new int[5];
             }
         }
@@ -213,7 +222,7 @@ namespace League
 
             for (int i = 0; i < myTeamTop.Count(); i++)
             {
-                var curPlayer = myTeamTop.ElementAt(i).First;
+                var curPlayer = myTeamTop.ElementAt(i);
                 int curCellId = Convert.ToInt32(curPlayer["cellId"]);
 
                 if (localCellId == curCellId)
@@ -237,7 +246,7 @@ namespace League
                             roleID = 4;
                             break;
                         default:
-                            roleID = -1;
+                            roleID = 5;
                             break;
                     }
                 }
@@ -496,6 +505,29 @@ namespace League
                         Properties.Settings.Default.sup4 = ChampForm.selectedId;
                         break;
                 }
+            }
+            else if (CurrentRole == 5)
+            {
+
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.general0 = ChampForm.selectedId;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.general1 = ChampForm.selectedId;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.general2 = ChampForm.selectedId;
+                        break;
+                    case 3:
+                        Properties.Settings.Default.general3 = ChampForm.selectedId;
+                        break;
+                    case 4:
+                        Properties.Settings.Default.general4 = ChampForm.selectedId;
+                        break;
+                }
+                Console.WriteLine("A)");
             }
 
         }
