@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using LCUSharp;
+using LCUSharp.DataObjects;
 using Newtonsoft.Json.Linq;
 
 namespace League
@@ -203,7 +204,7 @@ namespace League
             // exit if no actions (usually when leaving champ select)
             if (!e.Data["actions"].HasValues) return;
 
-            WriteSafe("formdebug", e.Data.ToString());
+            //WriteSafe("formdebug", e.Data.ToString());
 
             if (!autoChampSelect) return;
 
@@ -278,6 +279,31 @@ namespace League
                                 // lock in based on order of prefernce
                                 string str = "{\"actorCellId\": " + curCellId + ", \"championId\":" + currentPrefs[j] + ", \"completed\": true, \"id\": " + actionId + ", \"type\": \"string\"}";
                                 API.client.MakeApiRequest(HttpMethod.Patch, "/lol-champ-select/v1/session/actions/" + actionId, str);
+
+                                // select runes
+                                RuneManager runeManager = new RuneManager(API.client);
+                                var allPages = runeManager.GetRunePages();
+                                RunePage autoPage = null;
+
+                                // find page named "auto"
+                                foreach (RunePage p in allPages)
+                                {
+                                    if (p.Name == "auto")
+                                    {
+                                        autoPage = p;
+                                        break;
+                                    }
+                                }
+                                if (autoPage == null)
+                                {
+                                    // if player doesn't have a runepage named "auto" it will
+                                    // just change the one they have selected
+                                    autoPage = runeManager.GetCurrentRunePage();
+                                }
+
+
+                                WriteSafe("formdebug", runeManager.GetCurrentRunePage().PrimaryTreeId + "");
+
                                 break;
                             }
                         }

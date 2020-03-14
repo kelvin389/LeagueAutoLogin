@@ -78,6 +78,7 @@
     <Compile Include="RunesForm.Designer.cs">
       <DependentUpon>RunesForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <EmbeddedResource Include="ChampionForm.resx">
       <DependentUpon>ChampionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -93,6 +94,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RunesForm.resx">
+      <DependentUpon>RunesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
