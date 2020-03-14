@@ -26,66 +26,66 @@ namespace League.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int champ0 {
+        public int top0 {
             get {
-                return ((int)(this["champ0"]));
+                return ((int)(this["top0"]));
             }
             set {
-                this["champ0"] = value;
+                this["top0"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int champ1 {
+        public int top1 {
             get {
-                return ((int)(this["champ1"]));
+                return ((int)(this["top1"]));
             }
             set {
-                this["champ1"] = value;
+                this["top1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int champ2 {
+        public int top2 {
             get {
-                return ((int)(this["champ2"]));
+                return ((int)(this["top2"]));
             }
             set {
-                this["champ2"] = value;
+                this["top2"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int champ3 {
+        public int top3 {
             get {
-                return ((int)(this["champ3"]));
+                return ((int)(this["top3"]));
             }
             set {
-                this["champ3"] = value;
+                this["top3"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("-1")]
-        public int champ4 {
+        public int top4 {
             get {
-                return ((int)(this["champ4"]));
+                return ((int)(this["top4"]));
             }
             set {
-                this["champ4"] = value;
+                this["top4"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
         public int ban0 {
             get {
                 return ((int)(this["ban0"]));
@@ -97,7 +97,7 @@ namespace League.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
         public int ban1 {
             get {
                 return ((int)(this["ban1"]));
@@ -109,13 +109,265 @@ namespace League.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
         public int ban2 {
             get {
                 return ((int)(this["ban2"]));
             }
             set {
                 this["ban2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int jg0 {
+            get {
+                return ((int)(this["jg0"]));
+            }
+            set {
+                this["jg0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int jg1 {
+            get {
+                return ((int)(this["jg1"]));
+            }
+            set {
+                this["jg1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int jg2 {
+            get {
+                return ((int)(this["jg2"]));
+            }
+            set {
+                this["jg2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int jg3 {
+            get {
+                return ((int)(this["jg3"]));
+            }
+            set {
+                this["jg3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int jg4 {
+            get {
+                return ((int)(this["jg4"]));
+            }
+            set {
+                this["jg4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int mid0 {
+            get {
+                return ((int)(this["mid0"]));
+            }
+            set {
+                this["mid0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int mid1 {
+            get {
+                return ((int)(this["mid1"]));
+            }
+            set {
+                this["mid1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int mid2 {
+            get {
+                return ((int)(this["mid2"]));
+            }
+            set {
+                this["mid2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int mid3 {
+            get {
+                return ((int)(this["mid3"]));
+            }
+            set {
+                this["mid3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int mid4 {
+            get {
+                return ((int)(this["mid4"]));
+            }
+            set {
+                this["mid4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int adc0 {
+            get {
+                return ((int)(this["adc0"]));
+            }
+            set {
+                this["adc0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int adc1 {
+            get {
+                return ((int)(this["adc1"]));
+            }
+            set {
+                this["adc1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int adc2 {
+            get {
+                return ((int)(this["adc2"]));
+            }
+            set {
+                this["adc2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int adc3 {
+            get {
+                return ((int)(this["adc3"]));
+            }
+            set {
+                this["adc3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int adc4 {
+            get {
+                return ((int)(this["adc4"]));
+            }
+            set {
+                this["adc4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int sup0 {
+            get {
+                return ((int)(this["sup0"]));
+            }
+            set {
+                this["sup0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int sup1 {
+            get {
+                return ((int)(this["sup1"]));
+            }
+            set {
+                this["sup1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int sup2 {
+            get {
+                return ((int)(this["sup2"]));
+            }
+            set {
+                this["sup2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int sup3 {
+            get {
+                return ((int)(this["sup3"]));
+            }
+            set {
+                this["sup3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int sup4 {
+            get {
+                return ((int)(this["sup4"]));
+            }
+            set {
+                this["sup4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int curRole {
+            get {
+                return ((int)(this["curRole"]));
+            }
+            set {
+                this["curRole"] = value;
             }
         }
     }

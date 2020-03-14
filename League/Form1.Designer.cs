@@ -45,6 +45,8 @@
             this.Runes2 = new System.Windows.Forms.Button();
             this.Runes3 = new System.Windows.Forms.Button();
             this.Runes4 = new System.Windows.Forms.Button();
+            this.autoChampSel = new System.Windows.Forms.CheckBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label2
@@ -71,7 +73,7 @@
             // 
             this.ChampPref0.AutoSize = true;
             this.ChampPref0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChampPref0.Location = new System.Drawing.Point(27, 124);
+            this.ChampPref0.Location = new System.Drawing.Point(37, 170);
             this.ChampPref0.Name = "ChampPref0";
             this.ChampPref0.Size = new System.Drawing.Size(60, 24);
             this.ChampPref0.TabIndex = 5;
@@ -82,7 +84,7 @@
             // 
             this.ChampPref1.AutoSize = true;
             this.ChampPref1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChampPref1.Location = new System.Drawing.Point(27, 170);
+            this.ChampPref1.Location = new System.Drawing.Point(37, 216);
             this.ChampPref1.Name = "ChampPref1";
             this.ChampPref1.Size = new System.Drawing.Size(60, 24);
             this.ChampPref1.TabIndex = 6;
@@ -93,7 +95,7 @@
             // 
             this.ChampPref2.AutoSize = true;
             this.ChampPref2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChampPref2.Location = new System.Drawing.Point(27, 219);
+            this.ChampPref2.Location = new System.Drawing.Point(37, 265);
             this.ChampPref2.Name = "ChampPref2";
             this.ChampPref2.Size = new System.Drawing.Size(60, 24);
             this.ChampPref2.TabIndex = 7;
@@ -124,7 +126,7 @@
             // 
             this.ChampPref3.AutoSize = true;
             this.ChampPref3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChampPref3.Location = new System.Drawing.Point(27, 271);
+            this.ChampPref3.Location = new System.Drawing.Point(37, 317);
             this.ChampPref3.Name = "ChampPref3";
             this.ChampPref3.Size = new System.Drawing.Size(60, 24);
             this.ChampPref3.TabIndex = 18;
@@ -135,7 +137,7 @@
             // 
             this.ChampPref4.AutoSize = true;
             this.ChampPref4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChampPref4.Location = new System.Drawing.Point(27, 326);
+            this.ChampPref4.Location = new System.Drawing.Point(37, 372);
             this.ChampPref4.Name = "ChampPref4";
             this.ChampPref4.Size = new System.Drawing.Size(60, 24);
             this.ChampPref4.TabIndex = 19;
@@ -146,7 +148,7 @@
             // 
             this.Ban0.AutoSize = true;
             this.Ban0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ban0.Location = new System.Drawing.Point(200, 124);
+            this.Ban0.Location = new System.Drawing.Point(238, 131);
             this.Ban0.Name = "Ban0";
             this.Ban0.Size = new System.Drawing.Size(60, 24);
             this.Ban0.TabIndex = 20;
@@ -157,7 +159,7 @@
             // 
             this.Ban1.AutoSize = true;
             this.Ban1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ban1.Location = new System.Drawing.Point(200, 170);
+            this.Ban1.Location = new System.Drawing.Point(238, 177);
             this.Ban1.Name = "Ban1";
             this.Ban1.Size = new System.Drawing.Size(60, 24);
             this.Ban1.TabIndex = 21;
@@ -168,7 +170,7 @@
             // 
             this.Ban2.AutoSize = true;
             this.Ban2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ban2.Location = new System.Drawing.Point(200, 219);
+            this.Ban2.Location = new System.Drawing.Point(238, 226);
             this.Ban2.Name = "Ban2";
             this.Ban2.Size = new System.Drawing.Size(60, 24);
             this.Ban2.TabIndex = 22;
@@ -177,7 +179,7 @@
             // 
             // Runes0
             // 
-            this.Runes0.Location = new System.Drawing.Point(94, 124);
+            this.Runes0.Location = new System.Drawing.Point(104, 170);
             this.Runes0.Name = "Runes0";
             this.Runes0.Size = new System.Drawing.Size(75, 23);
             this.Runes0.TabIndex = 23;
@@ -187,7 +189,7 @@
             // 
             // Runes1
             // 
-            this.Runes1.Location = new System.Drawing.Point(94, 173);
+            this.Runes1.Location = new System.Drawing.Point(104, 219);
             this.Runes1.Name = "Runes1";
             this.Runes1.Size = new System.Drawing.Size(75, 23);
             this.Runes1.TabIndex = 24;
@@ -197,7 +199,7 @@
             // 
             // Runes2
             // 
-            this.Runes2.Location = new System.Drawing.Point(94, 220);
+            this.Runes2.Location = new System.Drawing.Point(104, 266);
             this.Runes2.Name = "Runes2";
             this.Runes2.Size = new System.Drawing.Size(75, 23);
             this.Runes2.TabIndex = 25;
@@ -207,7 +209,7 @@
             // 
             // Runes3
             // 
-            this.Runes3.Location = new System.Drawing.Point(94, 274);
+            this.Runes3.Location = new System.Drawing.Point(104, 320);
             this.Runes3.Name = "Runes3";
             this.Runes3.Size = new System.Drawing.Size(75, 23);
             this.Runes3.TabIndex = 26;
@@ -217,7 +219,7 @@
             // 
             // Runes4
             // 
-            this.Runes4.Location = new System.Drawing.Point(94, 326);
+            this.Runes4.Location = new System.Drawing.Point(104, 372);
             this.Runes4.Name = "Runes4";
             this.Runes4.Size = new System.Drawing.Size(75, 23);
             this.Runes4.TabIndex = 27;
@@ -225,11 +227,41 @@
             this.Runes4.UseVisualStyleBackColor = true;
             this.Runes4.Click += new System.EventHandler(this.Runes4_Click);
             // 
+            // autoChampSel
+            // 
+            this.autoChampSel.AutoSize = true;
+            this.autoChampSel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoChampSel.Location = new System.Drawing.Point(64, 524);
+            this.autoChampSel.Name = "autoChampSel";
+            this.autoChampSel.Size = new System.Drawing.Size(191, 28);
+            this.autoChampSel.TabIndex = 28;
+            this.autoChampSel.Text = "Auto Champ Select";
+            this.autoChampSel.UseVisualStyleBackColor = true;
+            this.autoChampSel.CheckedChanged += new System.EventHandler(this.autoChampSel_CheckedChanged);
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Top",
+            "Jungle",
+            "Mid",
+            "ADC",
+            "Support"});
+            this.comboBox1.Location = new System.Drawing.Point(41, 115);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(138, 21);
+            this.comboBox1.TabIndex = 29;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 624);
+            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.autoChampSel);
             this.Controls.Add(this.Runes4);
             this.Controls.Add(this.Runes3);
             this.Controls.Add(this.Runes2);
@@ -272,6 +304,8 @@
         private System.Windows.Forms.Button Runes2;
         private System.Windows.Forms.Button Runes3;
         private System.Windows.Forms.Button Runes4;
+        private System.Windows.Forms.CheckBox autoChampSel;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
