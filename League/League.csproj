@@ -108,6 +108,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="resources\champion.json" />
+    <None Include="resources\runesReforged.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
