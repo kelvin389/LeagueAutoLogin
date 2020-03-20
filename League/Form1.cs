@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using LCUSharp;
 using LCUSharp.DataObjects;
@@ -51,6 +50,7 @@ namespace League
             AppDomain.CurrentDomain.ProcessExit += new EventHandler(OnProcessExit);
             comboBox1.SelectedIndex = 0;
             Start();
+            RuneForm.ParseRunesJson();
         }
 
         static void OnProcessExit(object sender, EventArgs e)
