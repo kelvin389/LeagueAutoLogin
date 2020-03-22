@@ -204,7 +204,7 @@ namespace League
             // exit if no actions (usually when leaving champ select)
             if (!e.Data["actions"].HasValues) return;
 
-            //WriteSafe("formdebug", e.Data.ToString());
+            WriteSafe("formdebug", e.Data.ToString());
 
             if (!autoChampSelect) return;
 
@@ -228,22 +228,22 @@ namespace League
 
                 if (localCellId == curCellId)
                 {
-                    string role = curPlayer["assignedPosition"].ToString();
+                    string role = curPlayer["assignedPosition"].ToString().ToLower();
                     switch (role)
                     {
-                        case "top":
+                        case "top": // top
                             roleID = 0;
                             break;
-                        case "jungle":
+                        case "jungle": // jg
                             roleID = 1;
                             break;
-                        case "mid":
+                        case "middle": // mid
                             roleID = 2;
                             break;
-                        case "bot":
+                        case "bottom": // adc
                             roleID = 3;
                             break;
-                        case "support":
+                        case "utility": // support
                             roleID = 4;
                             break;
                         default:
