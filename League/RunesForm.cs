@@ -8,8 +8,14 @@ namespace League
 {
     public partial class RunesForm : Form
     {
+        /*
+         * 0 : domination
+         * 1 : inspiration
+         * 2 : precision
+         * 3 : resolve
+         * 4 : sorcery
+         */
         List<RuneTree> runeTrees = new List<RuneTree>();
-        List<RadioButton> radioButtons = new List<RadioButton>();
         List<GroupBox> primaryGroupBoxes = new List<GroupBox>();
         List<GroupBox> secondaryGroupBoxes = new List<GroupBox>();
         RuneTree primaryTree;
@@ -22,7 +28,7 @@ namespace League
         const int SECONDARY_START_X = 10;
         const int SECONDARY_X_OFFSET = 130;
         const int SECONDARY_GROUPBOX_START_Y = 50;
-        const int SECONDARY_GROUPBOX_START_X = 650;
+        const int SECONDARY_GROUPBOX_START_X = 600;
         const int SECONDARY_GROUPBOX_OFFSET = 50;
 
         public RunesForm()
@@ -107,7 +113,6 @@ namespace League
                         Tag = thisRowRunes[j].id,
                         Text = thisRowRunes[j].name
                     };
-                    radioButtons.Add(button);
                     thisRowRadioButtons.Add(button);
                     curX += PRIMARY_X_OFFSET;
                 }
@@ -146,7 +151,7 @@ namespace League
             for (int i = 1; i < secondaryTree.runeRows.Count; i++)
             {
                 List<Rune> thisRowRunes = secondaryTree.runeRows[i].runes;
-                List<RadioButton> thisRowRadioButtons = new List<RadioButton>();
+                List<CheckBox> thisRowCheckBoxes = new List<CheckBox>();
                 int curX = SECONDARY_START_X;
                 if (thisRowRunes.Count == 3) curX += (int)(SECONDARY_X_OFFSET / 2.0f);
 
@@ -154,15 +159,14 @@ namespace League
                 for (int j = 0; j < thisRowRunes.Count; j++)
                 {
                     // create new radio button for each rune
-                    RadioButton button = new RadioButton
+                    CheckBox checkbox = new CheckBox
                     {
                         Location = new System.Drawing.Point(curX, 20),
                         AutoSize = true,
                         Tag = thisRowRunes[j].id,
                         Text = thisRowRunes[j].name
                     };
-                    radioButtons.Add(button);
-                    thisRowRadioButtons.Add(button);
+                    thisRowCheckBoxes.Add(checkbox);
                     curX += SECONDARY_X_OFFSET;
                 }
 
@@ -177,10 +181,10 @@ namespace League
                     AutoSize = true,
                     MinimumSize = new System.Drawing.Size(520, 0) // force all sizes of boxes to be 500px wide
                 };
-                for (int k = 0; k < thisRowRadioButtons.Count; k++)
+                for (int k = 0; k < thisRowCheckBoxes.Count; k++)
                 {
                     //this.Controls.Add(thisRowRadioButtons[k]);
-                    box.Controls.Add(thisRowRadioButtons[k]);
+                    box.Controls.Add(thisRowCheckBoxes[k]);
                 }
                 this.Controls.Add(box);
                 secondaryGroupBoxes.Add(box);
@@ -196,7 +200,7 @@ namespace League
         {
             if (primary0.Checked)
             {
-                primaryTree = runeTrees[0];
+                primaryTree = runeTrees[2]; // precision
                 UpdatePrimary();
             }
         }
@@ -205,7 +209,7 @@ namespace League
         {
             if (primary1.Checked)
             {
-                primaryTree = runeTrees[1];
+                primaryTree = runeTrees[0]; //domination
                 UpdatePrimary();
             }
         }
@@ -214,7 +218,7 @@ namespace League
         {
             if (primary2.Checked)
             {
-                primaryTree = runeTrees[2];
+                primaryTree = runeTrees[4]; // sorcery
                 UpdatePrimary();
             }
         }
@@ -223,7 +227,7 @@ namespace League
         {
             if (primary3.Checked)
             {
-                primaryTree = runeTrees[3];
+                primaryTree = runeTrees[3]; // resolve
                 UpdatePrimary();
             }
         }
@@ -232,16 +236,17 @@ namespace League
         {
             if (primary4.Checked)
             {
-                primaryTree = runeTrees[4];
+                primaryTree = runeTrees[1]; // inspiration
                 UpdatePrimary();
             }
         }
+
 
         private void secondary0_CheckedChanged(object sender, EventArgs e)
         {
             if (secondary0.Checked)
             {
-                secondaryTree = runeTrees[0];
+                secondaryTree = runeTrees[2]; // prec
                 UpdateSecondary();
             }
         }
@@ -250,7 +255,7 @@ namespace League
         {
             if (secondary1.Checked)
             {
-                secondaryTree = runeTrees[1];
+                secondaryTree = runeTrees[0]; // dom
                 UpdateSecondary();
             }
         }
@@ -259,7 +264,7 @@ namespace League
         {
             if (secondary2.Checked)
             {
-                secondaryTree = runeTrees[2];
+                secondaryTree = runeTrees[4]; // sorc
                 UpdateSecondary();
             }
         }
@@ -268,7 +273,7 @@ namespace League
         {
             if (secondary3.Checked)
             {
-                secondaryTree = runeTrees[3];
+                secondaryTree = runeTrees[3]; // res
                 UpdateSecondary();
             }
         }
@@ -277,9 +282,15 @@ namespace League
         {
             if (secondary4.Checked)
             {
-                secondaryTree = runeTrees[4];
+                secondaryTree = runeTrees[1]; // insp
                 UpdateSecondary();
             }
+        }
+        private void RunesForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Hide();
+            // TODO: reset all form fields for next time
+            e.Cancel = true; // cancel close event
         }
     }
 
