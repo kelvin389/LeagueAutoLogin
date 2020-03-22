@@ -104,9 +104,9 @@
             // 
             // formdebug
             // 
-            this.formdebug.Location = new System.Drawing.Point(342, 12);
+            this.formdebug.Location = new System.Drawing.Point(414, 12);
             this.formdebug.Name = "formdebug";
-            this.formdebug.Size = new System.Drawing.Size(1017, 600);
+            this.formdebug.Size = new System.Drawing.Size(945, 600);
             this.formdebug.TabIndex = 16;
             this.formdebug.Text = "";
             // 
@@ -114,7 +114,7 @@
             // 
             this.autoAccept.AutoSize = true;
             this.autoAccept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoAccept.Location = new System.Drawing.Point(64, 571);
+            this.autoAccept.Location = new System.Drawing.Point(88, 570);
             this.autoAccept.Name = "autoAccept";
             this.autoAccept.Size = new System.Drawing.Size(196, 28);
             this.autoAccept.TabIndex = 17;
@@ -148,7 +148,7 @@
             // 
             this.Ban0.AutoSize = true;
             this.Ban0.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ban0.Location = new System.Drawing.Point(238, 131);
+            this.Ban0.Location = new System.Drawing.Point(284, 154);
             this.Ban0.Name = "Ban0";
             this.Ban0.Size = new System.Drawing.Size(60, 24);
             this.Ban0.TabIndex = 20;
@@ -159,7 +159,7 @@
             // 
             this.Ban1.AutoSize = true;
             this.Ban1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ban1.Location = new System.Drawing.Point(238, 177);
+            this.Ban1.Location = new System.Drawing.Point(284, 200);
             this.Ban1.Name = "Ban1";
             this.Ban1.Size = new System.Drawing.Size(60, 24);
             this.Ban1.TabIndex = 21;
@@ -170,7 +170,7 @@
             // 
             this.Ban2.AutoSize = true;
             this.Ban2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ban2.Location = new System.Drawing.Point(238, 226);
+            this.Ban2.Location = new System.Drawing.Point(284, 249);
             this.Ban2.Name = "Ban2";
             this.Ban2.Size = new System.Drawing.Size(60, 24);
             this.Ban2.TabIndex = 22;
@@ -179,51 +179,51 @@
             // 
             // Runes0
             // 
-            this.Runes0.Location = new System.Drawing.Point(104, 170);
+            this.Runes0.Location = new System.Drawing.Point(158, 170);
             this.Runes0.Name = "Runes0";
             this.Runes0.Size = new System.Drawing.Size(75, 23);
             this.Runes0.TabIndex = 23;
-            this.Runes0.Text = "button1";
+            this.Runes0.Text = "runes";
             this.Runes0.UseVisualStyleBackColor = true;
             this.Runes0.Click += new System.EventHandler(this.Runes0_Click);
             // 
             // Runes1
             // 
-            this.Runes1.Location = new System.Drawing.Point(104, 219);
+            this.Runes1.Location = new System.Drawing.Point(158, 219);
             this.Runes1.Name = "Runes1";
             this.Runes1.Size = new System.Drawing.Size(75, 23);
             this.Runes1.TabIndex = 24;
-            this.Runes1.Text = "button1";
+            this.Runes1.Text = "runes";
             this.Runes1.UseVisualStyleBackColor = true;
             this.Runes1.Click += new System.EventHandler(this.Runes1_Click);
             // 
             // Runes2
             // 
-            this.Runes2.Location = new System.Drawing.Point(104, 266);
+            this.Runes2.Location = new System.Drawing.Point(158, 266);
             this.Runes2.Name = "Runes2";
             this.Runes2.Size = new System.Drawing.Size(75, 23);
             this.Runes2.TabIndex = 25;
-            this.Runes2.Text = "button1";
+            this.Runes2.Text = "runes\r\n";
             this.Runes2.UseVisualStyleBackColor = true;
             this.Runes2.Click += new System.EventHandler(this.Runes2_Click);
             // 
             // Runes3
             // 
-            this.Runes3.Location = new System.Drawing.Point(104, 320);
+            this.Runes3.Location = new System.Drawing.Point(158, 320);
             this.Runes3.Name = "Runes3";
             this.Runes3.Size = new System.Drawing.Size(75, 23);
             this.Runes3.TabIndex = 26;
-            this.Runes3.Text = "button1";
+            this.Runes3.Text = "runes";
             this.Runes3.UseVisualStyleBackColor = true;
             this.Runes3.Click += new System.EventHandler(this.Runes3_Click);
             // 
             // Runes4
             // 
-            this.Runes4.Location = new System.Drawing.Point(104, 372);
+            this.Runes4.Location = new System.Drawing.Point(158, 372);
             this.Runes4.Name = "Runes4";
             this.Runes4.Size = new System.Drawing.Size(75, 23);
             this.Runes4.TabIndex = 27;
-            this.Runes4.Text = "button1";
+            this.Runes4.Text = "runes";
             this.Runes4.UseVisualStyleBackColor = true;
             this.Runes4.Click += new System.EventHandler(this.Runes4_Click);
             // 
@@ -231,7 +231,7 @@
             // 
             this.autoChampSel.AutoSize = true;
             this.autoChampSel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoChampSel.Location = new System.Drawing.Point(64, 524);
+            this.autoChampSel.Location = new System.Drawing.Point(88, 523);
             this.autoChampSel.Name = "autoChampSel";
             this.autoChampSel.Size = new System.Drawing.Size(191, 28);
             this.autoChampSel.TabIndex = 28;

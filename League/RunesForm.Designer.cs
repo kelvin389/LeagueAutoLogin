@@ -50,6 +50,7 @@
             this.secondary4 = new System.Windows.Forms.RadioButton();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.secondary0 = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -292,11 +293,22 @@
             this.secondary0.UseVisualStyleBackColor = true;
             this.secondary0.CheckedChanged += new System.EventHandler(this.secondary0_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(419, 462);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(271, 70);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "ok";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // RunesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1177, 661);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox6);
             this.Name = "RunesForm";
@@ -343,5 +355,6 @@
         private System.Windows.Forms.RadioButton secondary4;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.RadioButton secondary0;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -144,6 +144,24 @@ namespace League
 				case 267: return "Nami";
 				case 59: return "Jarvan IV";
 				case 81: return "Ezreal";
+
+				/* TO ADD:
+				 * camille
+				 * xayah
+				 * rakan
+				 * kayn
+				 * ornn
+				 * zoe
+				 * kaiba
+				 * pyke
+				 * neeko
+				 * sdylas
+				 * yumi
+				 * qiyana
+				 * senna
+				 * aphelios
+				 * sett
+				 */
 				default: return "ERROR";
 			}
 		}
