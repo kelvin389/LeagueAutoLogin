@@ -15,21 +15,22 @@ namespace League
          * 3 : resolve
          * 4 : sorcery
          */
-        List<RuneTree> runeTrees = new List<RuneTree>();
-        List<GroupBox> primaryGroupBoxes = new List<GroupBox>();
-        List<GroupBox> secondaryGroupBoxes = new List<GroupBox>();
-        RuneTree primaryTree;
-        RuneTree secondaryTree;
-        const int PRIMARY_START_X = 10;
-        const int PRIMARY_X_OFFSET = 130;
-        const int PRIMARY_GROUPBOX_START_Y = 100;
-        const int PRIMARY_GROUPBOX_START_X = 50;
-        const int PRIMARY_GROUPBOX_OFFSET = 50;
-        const int SECONDARY_START_X = 10;
-        const int SECONDARY_X_OFFSET = 130;
-        const int SECONDARY_GROUPBOX_START_Y = 50;
-        const int SECONDARY_GROUPBOX_START_X = 600;
-        const int SECONDARY_GROUPBOX_OFFSET = 50;
+        private List<RuneTree> runeTrees = new List<RuneTree>();
+        private List<GroupBox> primaryGroupBoxes = new List<GroupBox>();
+        private List<GroupBox> secondaryGroupBoxes = new List<GroupBox>();
+        private RuneTree primaryTree;
+        private RuneTree secondaryTree;
+        private const int GLOBAL_START_X = 10;
+        private const int GLOBAL_START_Y = 25;
+        private const int GLOBAL_X_OFFSET = 130;
+        private const int PRIMARY_GROUPBOX_START_Y = 100;
+        private const int PRIMARY_GROUPBOX_START_X = 50;
+        private const int PRIMARY_GROUPBOX_OFFSET = 50;
+        private const int SECONDARY_GROUPBOX_START_Y = 50;
+        private const int SECONDARY_GROUPBOX_START_X = 600;
+        private const int SECONDARY_GROUPBOX_OFFSET = 50;
+
+        public string selectedRunes = "";
 
         public RunesForm()
         {
@@ -99,8 +100,8 @@ namespace League
             {
                 List<Rune> thisRowRunes = primaryTree.runeRows[i].runes;
                 List<RadioButton> thisRowRadioButtons = new List<RadioButton>();
-                int curX = PRIMARY_START_X;
-                if (thisRowRunes.Count == 3) curX += (int)(PRIMARY_X_OFFSET / 2.0f);
+                int curX = GLOBAL_START_X;
+                if (thisRowRunes.Count == 3) curX += (int)(GLOBAL_X_OFFSET / 2.0f);
 
                 // iterate through each rune in this row
                 for (int j = 0; j < thisRowRunes.Count; j++)
@@ -108,13 +109,13 @@ namespace League
                     // create new radio button for each rune
                     RadioButton button = new RadioButton
                     {
-                        Location = new System.Drawing.Point(curX, 20),
+                        Location = new System.Drawing.Point(curX, GLOBAL_START_Y),
                         AutoSize = true,
                         Tag = thisRowRunes[j].id,
                         Text = thisRowRunes[j].name
                     };
                     thisRowRadioButtons.Add(button);
-                    curX += PRIMARY_X_OFFSET;
+                    curX += GLOBAL_X_OFFSET;
                 }
 
                 System.Drawing.Rectangle rect = new System.Drawing.Rectangle()
@@ -152,8 +153,8 @@ namespace League
             {
                 List<Rune> thisRowRunes = secondaryTree.runeRows[i].runes;
                 List<CheckBox> thisRowCheckBoxes = new List<CheckBox>();
-                int curX = SECONDARY_START_X;
-                if (thisRowRunes.Count == 3) curX += (int)(SECONDARY_X_OFFSET / 2.0f);
+                int curX = GLOBAL_START_X;
+                if (thisRowRunes.Count == 3) curX += (int)(GLOBAL_X_OFFSET / 2.0f);
 
                 // iterate through each rune in this row
                 for (int j = 0; j < thisRowRunes.Count; j++)
@@ -161,13 +162,13 @@ namespace League
                     // create new radio button for each rune
                     CheckBox checkbox = new CheckBox
                     {
-                        Location = new System.Drawing.Point(curX, 20),
+                        Location = new System.Drawing.Point(curX, GLOBAL_START_Y),
                         AutoSize = true,
                         Tag = thisRowRunes[j].id,
                         Text = thisRowRunes[j].name
                     };
                     thisRowCheckBoxes.Add(checkbox);
-                    curX += SECONDARY_X_OFFSET;
+                    curX += GLOBAL_X_OFFSET;
                 }
 
                 System.Drawing.Rectangle rect = new System.Drawing.Rectangle()
@@ -291,6 +292,73 @@ namespace League
             Hide();
             // TODO: reset all form fields for next time
             e.Cancel = true; // cancel close event
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // TODO: input checking (only 2 checkboxes selected, etc)
+
+            // list containing both primary and secondary groupboxes
+            List<GroupBox> allGroupBoxes = new List<GroupBox>();
+
+            // list containing all checked radio buttons
+            List<RadioButton> checkedRadios = new List<RadioButton>();
+            // list containing all checked checkboxes
+            List<CheckBox> checkedBoxes = new List<CheckBox>();
+
+            // add primary groupboxes to allgroupboxes list
+            for (int i = 0; i < primaryGroupBoxes.Count; i++)
+            {
+                allGroupBoxes.Add(primaryGroupBoxes[i]);
+            }
+            // add secondary groupboxes to allgroupboxes list
+            for (int i = 0; i < secondaryGroupBoxes.Count; i++)
+            {
+                allGroupBoxes.Add(secondaryGroupBoxes[i]);
+            }
+
+            // iterate through each groupbox
+            for (int i = 0; i < allGroupBoxes.Count; i++)
+            {
+                // all radio buttons inside of this groupbox
+                List<RadioButton> thisRadios = allGroupBoxes[i].Controls.OfType<RadioButton>().ToList();
+                // all checkboxes inside of this groupbox
+                List<CheckBox> thisBoxes = allGroupBoxes[i].Controls.OfType<CheckBox>().ToList();
+
+                // add all checked radio buttons to checkedRadios list
+                for (int j = 0; j < thisRadios.Count; j++)
+                {
+                    if (thisRadios[j].Checked) checkedRadios.Add(thisRadios[j]);
+                }
+                // add all checked checkboxes buttons to checkedBoxes list
+                for (int j = 0; j < thisBoxes.Count; j++)
+                {
+                    if (thisBoxes[j].Checked) checkedBoxes.Add(thisBoxes[j]);
+                }
+            }
+
+            List<int> selectedRuneIds = new List<int>();
+            for (int i = 0; i < checkedRadios.Count; i++)
+            {
+                int runeId = Convert.ToInt32(checkedRadios[i].Tag);
+                selectedRuneIds.Add(runeId);
+            }
+            for (int i = 0; i < checkedBoxes.Count; i++)
+            {
+                int runeId = Convert.ToInt32(checkedBoxes[i].Tag);
+                selectedRuneIds.Add(runeId);
+            }
+
+            string runeStr = "";
+            for (int i = 0; i < selectedRuneIds.Count; i++)
+            {
+                runeStr += selectedRuneIds[i].ToString();
+                if (i != selectedRuneIds.Count - 1) runeStr += ","; // if not at end, add comma to seperate runes
+            }
+
+            selectedRunes = runeStr;
+
+            Form1.RunesSelected();
         }
     }
 

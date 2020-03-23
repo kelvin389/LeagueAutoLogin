@@ -69,7 +69,7 @@
             // primary0
             // 
             this.primary0.AutoSize = true;
-            this.primary0.Location = new System.Drawing.Point(30, 55);
+            this.primary0.Location = new System.Drawing.Point(30, 60);
             this.primary0.Name = "primary0";
             this.primary0.Size = new System.Drawing.Size(14, 13);
             this.primary0.TabIndex = 0;
@@ -89,7 +89,7 @@
             // primary4
             // 
             this.primary4.AutoSize = true;
-            this.primary4.Location = new System.Drawing.Point(248, 55);
+            this.primary4.Location = new System.Drawing.Point(248, 60);
             this.primary4.Name = "primary4";
             this.primary4.Size = new System.Drawing.Size(14, 13);
             this.primary4.TabIndex = 8;
@@ -109,7 +109,7 @@
             // primary3
             // 
             this.primary3.AutoSize = true;
-            this.primary3.Location = new System.Drawing.Point(191, 55);
+            this.primary3.Location = new System.Drawing.Point(191, 60);
             this.primary3.Name = "primary3";
             this.primary3.Size = new System.Drawing.Size(14, 13);
             this.primary3.TabIndex = 10;
@@ -129,7 +129,7 @@
             // primary2
             // 
             this.primary2.AutoSize = true;
-            this.primary2.Location = new System.Drawing.Point(134, 55);
+            this.primary2.Location = new System.Drawing.Point(134, 60);
             this.primary2.Name = "primary2";
             this.primary2.Size = new System.Drawing.Size(14, 13);
             this.primary2.TabIndex = 12;
@@ -149,7 +149,7 @@
             // primary1
             // 
             this.primary1.AutoSize = true;
-            this.primary1.Location = new System.Drawing.Point(81, 55);
+            this.primary1.Location = new System.Drawing.Point(81, 60);
             this.primary1.Name = "primary1";
             this.primary1.Size = new System.Drawing.Size(14, 13);
             this.primary1.TabIndex = 14;
@@ -216,7 +216,7 @@
             // secondary1
             // 
             this.secondary1.AutoSize = true;
-            this.secondary1.Location = new System.Drawing.Point(81, 55);
+            this.secondary1.Location = new System.Drawing.Point(81, 60);
             this.secondary1.Name = "secondary1";
             this.secondary1.Size = new System.Drawing.Size(14, 13);
             this.secondary1.TabIndex = 14;
@@ -227,7 +227,7 @@
             // secondary2
             // 
             this.secondary2.AutoSize = true;
-            this.secondary2.Location = new System.Drawing.Point(134, 55);
+            this.secondary2.Location = new System.Drawing.Point(134, 60);
             this.secondary2.Name = "secondary2";
             this.secondary2.Size = new System.Drawing.Size(14, 13);
             this.secondary2.TabIndex = 12;
@@ -247,7 +247,7 @@
             // secondary3
             // 
             this.secondary3.AutoSize = true;
-            this.secondary3.Location = new System.Drawing.Point(191, 55);
+            this.secondary3.Location = new System.Drawing.Point(191, 60);
             this.secondary3.Name = "secondary3";
             this.secondary3.Size = new System.Drawing.Size(14, 13);
             this.secondary3.TabIndex = 10;
@@ -267,7 +267,7 @@
             // secondary4
             // 
             this.secondary4.AutoSize = true;
-            this.secondary4.Location = new System.Drawing.Point(248, 55);
+            this.secondary4.Location = new System.Drawing.Point(248, 60);
             this.secondary4.Name = "secondary4";
             this.secondary4.Size = new System.Drawing.Size(14, 13);
             this.secondary4.TabIndex = 8;
@@ -278,7 +278,7 @@
             // secondary0
             // 
             this.secondary0.AutoSize = true;
-            this.secondary0.Location = new System.Drawing.Point(30, 55);
+            this.secondary0.Location = new System.Drawing.Point(30, 60);
             this.secondary0.Name = "secondary0";
             this.secondary0.Size = new System.Drawing.Size(14, 13);
             this.secondary0.TabIndex = 0;
@@ -313,6 +313,7 @@
             this.button1.TabIndex = 17;
             this.button1.Text = "ok";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // RunesForm
             // 
@@ -324,8 +325,8 @@
             this.Controls.Add(this.groupBox6);
             this.Name = "RunesForm";
             this.Text = "RunesForm";
-            this.Load += new System.EventHandler(this.RunesForm_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RunesForm_FormClosing);
+            this.Load += new System.EventHandler(this.RunesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

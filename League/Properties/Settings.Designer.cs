@@ -430,5 +430,365 @@ namespace League.Properties {
                 this["general4"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string topRunes0 {
+            get {
+                return ((string)(this["topRunes0"]));
+            }
+            set {
+                this["topRunes0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string topRunes1 {
+            get {
+                return ((string)(this["topRunes1"]));
+            }
+            set {
+                this["topRunes1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string topRunes2 {
+            get {
+                return ((string)(this["topRunes2"]));
+            }
+            set {
+                this["topRunes2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string topRunes3 {
+            get {
+                return ((string)(this["topRunes3"]));
+            }
+            set {
+                this["topRunes3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string topRunes4 {
+            get {
+                return ((string)(this["topRunes4"]));
+            }
+            set {
+                this["topRunes4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string jgRunes0 {
+            get {
+                return ((string)(this["jgRunes0"]));
+            }
+            set {
+                this["jgRunes0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string jgRunes1 {
+            get {
+                return ((string)(this["jgRunes1"]));
+            }
+            set {
+                this["jgRunes1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string jgRunes2 {
+            get {
+                return ((string)(this["jgRunes2"]));
+            }
+            set {
+                this["jgRunes2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string jgRunes3 {
+            get {
+                return ((string)(this["jgRunes3"]));
+            }
+            set {
+                this["jgRunes3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string jgRunes4 {
+            get {
+                return ((string)(this["jgRunes4"]));
+            }
+            set {
+                this["jgRunes4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string midRunes0 {
+            get {
+                return ((string)(this["midRunes0"]));
+            }
+            set {
+                this["midRunes0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string midRunes1 {
+            get {
+                return ((string)(this["midRunes1"]));
+            }
+            set {
+                this["midRunes1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string midRunes2 {
+            get {
+                return ((string)(this["midRunes2"]));
+            }
+            set {
+                this["midRunes2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string midRunes3 {
+            get {
+                return ((string)(this["midRunes3"]));
+            }
+            set {
+                this["midRunes3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string midRunes4 {
+            get {
+                return ((string)(this["midRunes4"]));
+            }
+            set {
+                this["midRunes4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string adcRunes0 {
+            get {
+                return ((string)(this["adcRunes0"]));
+            }
+            set {
+                this["adcRunes0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string adcRunes1 {
+            get {
+                return ((string)(this["adcRunes1"]));
+            }
+            set {
+                this["adcRunes1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string adcRunes2 {
+            get {
+                return ((string)(this["adcRunes2"]));
+            }
+            set {
+                this["adcRunes2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string adcRunes3 {
+            get {
+                return ((string)(this["adcRunes3"]));
+            }
+            set {
+                this["adcRunes3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string adcRunes4 {
+            get {
+                return ((string)(this["adcRunes4"]));
+            }
+            set {
+                this["adcRunes4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string supRunes0 {
+            get {
+                return ((string)(this["supRunes0"]));
+            }
+            set {
+                this["supRunes0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string supRunes1 {
+            get {
+                return ((string)(this["supRunes1"]));
+            }
+            set {
+                this["supRunes1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string supRunes2 {
+            get {
+                return ((string)(this["supRunes2"]));
+            }
+            set {
+                this["supRunes2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string supRunes3 {
+            get {
+                return ((string)(this["supRunes3"]));
+            }
+            set {
+                this["supRunes3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string supRunes4 {
+            get {
+                return ((string)(this["supRunes4"]));
+            }
+            set {
+                this["supRunes4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string generalRunes0 {
+            get {
+                return ((string)(this["generalRunes0"]));
+            }
+            set {
+                this["generalRunes0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string generalRunes1 {
+            get {
+                return ((string)(this["generalRunes1"]));
+            }
+            set {
+                this["generalRunes1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string generalRunes2 {
+            get {
+                return ((string)(this["generalRunes2"]));
+            }
+            set {
+                this["generalRunes2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string generalRunes3 {
+            get {
+                return ((string)(this["generalRunes3"]));
+            }
+            set {
+                this["generalRunes3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string generalRunes4 {
+            get {
+                return ((string)(this["generalRunes4"]));
+            }
+            set {
+                this["generalRunes4"] = value;
+            }
+        }
     }
 }

@@ -20,13 +20,20 @@ namespace League
         private static int CurrentRole = 0;
 
         private static int PrefPoolSize = 5;
-        private static int[] PreferredGeneral = new int[PrefPoolSize];
         private static int[] PreferredTops = new int[PrefPoolSize];
         private static int[] PreferredJgs = new int[PrefPoolSize];
         private static int[] PreferredMids = new int[PrefPoolSize];
         private static int[] PreferredADCs = new int[PrefPoolSize];
         private static int[] PreferredSups = new int[PrefPoolSize];
+        private static int[] PreferredGeneral = new int[PrefPoolSize];
         private static int[] PreferredBans = new int[3];
+
+        private static string[] RunesTop = new string[PrefPoolSize];
+        private static string[] RunesJg = new string[PrefPoolSize];
+        private static string[] RunesMid = new string[PrefPoolSize];
+        private static string[] RunesADC = new string[PrefPoolSize];
+        private static string[] RunesSup = new string[PrefPoolSize];
+        private static string[] RunesGeneral = new string[PrefPoolSize];
 
         private static bool selectingBan = false;
 
@@ -133,6 +140,42 @@ namespace League
             PreferredBans[0] = Properties.Settings.Default.ban0;
             PreferredBans[1] = Properties.Settings.Default.ban1;
             PreferredBans[2] = Properties.Settings.Default.ban2;
+
+            RunesTop[0] = Properties.Settings.Default.topRunes0;
+            RunesTop[1] = Properties.Settings.Default.topRunes1;
+            RunesTop[2] = Properties.Settings.Default.topRunes2;
+            RunesTop[3] = Properties.Settings.Default.topRunes3;
+            RunesTop[4] = Properties.Settings.Default.topRunes4;
+
+            RunesJg[0] = Properties.Settings.Default.jgRunes0;
+            RunesJg[1] = Properties.Settings.Default.jgRunes1;
+            RunesJg[2] = Properties.Settings.Default.jgRunes2;
+            RunesJg[3] = Properties.Settings.Default.jgRunes3;
+            RunesJg[4] = Properties.Settings.Default.jgRunes4;
+
+            RunesMid[0] = Properties.Settings.Default.midRunes0;
+            RunesMid[1] = Properties.Settings.Default.midRunes1;
+            RunesMid[2] = Properties.Settings.Default.midRunes2;
+            RunesMid[3] = Properties.Settings.Default.midRunes3;
+            RunesMid[4] = Properties.Settings.Default.midRunes4;
+
+            RunesADC[0] = Properties.Settings.Default.adcRunes0;
+            RunesADC[1] = Properties.Settings.Default.adcRunes1;
+            RunesADC[2] = Properties.Settings.Default.adcRunes2;
+            RunesADC[3] = Properties.Settings.Default.adcRunes3;
+            RunesADC[4] = Properties.Settings.Default.adcRunes4;
+
+            RunesSup[0] = Properties.Settings.Default.supRunes0;
+            RunesSup[1] = Properties.Settings.Default.supRunes1;
+            RunesSup[2] = Properties.Settings.Default.supRunes2;
+            RunesSup[3] = Properties.Settings.Default.supRunes3;
+            RunesSup[4] = Properties.Settings.Default.supRunes4;
+
+            RunesGeneral[0] = Properties.Settings.Default.generalRunes0;
+            RunesGeneral[1] = Properties.Settings.Default.generalRunes1;
+            RunesGeneral[2] = Properties.Settings.Default.generalRunes2;
+            RunesGeneral[3] = Properties.Settings.Default.generalRunes3;
+            RunesGeneral[4] = Properties.Settings.Default.generalRunes4;
 
             CurrentRole = Properties.Settings.Default.curRole;
 
@@ -405,6 +448,13 @@ namespace League
             Properties.Settings.Default.Save();
         }
 
+        public static void RunesSelected()
+        {
+            RuneForm.Close();
+            UpdateRuneSettings();
+            Properties.Settings.Default.Save();
+        }
+
         private static void UpdateBanSettings()
         {
             switch (SelectingSlot)
@@ -553,9 +603,143 @@ namespace League
                         Properties.Settings.Default.general4 = ChampForm.selectedId;
                         break;
                 }
-                Console.WriteLine("A)");
             }
 
+        }
+
+        private static void UpdateRuneSettings()
+        {
+            if (CurrentRole == 0)
+            {
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.topRunes0 = RuneForm.selectedRunes;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.topRunes1 = RuneForm.selectedRunes;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.topRunes2 = RuneForm.selectedRunes;
+                        break;
+                    case 3:
+                        Properties.Settings.Default.topRunes3 = RuneForm.selectedRunes;
+                        break;
+                    case 4:
+                        Properties.Settings.Default.topRunes4 = RuneForm.selectedRunes;
+                        break;
+                }
+            }
+            else if (CurrentRole == 1)
+            {
+
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.jgRunes0 = RuneForm.selectedRunes;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.jgRunes1 = RuneForm.selectedRunes;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.jgRunes2 = RuneForm.selectedRunes;
+                        break;
+                    case 3:
+                        Properties.Settings.Default.jgRunes3 = RuneForm.selectedRunes;
+                        break;
+                    case 4:
+                        Properties.Settings.Default.jgRunes4 = RuneForm.selectedRunes;
+                        break;
+                }
+            }
+            else if (CurrentRole == 2)
+            {
+
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.midRunes0 = RuneForm.selectedRunes;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.midRunes1 = RuneForm.selectedRunes;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.midRunes2 = RuneForm.selectedRunes;
+                        break;
+                    case 3:
+                        Properties.Settings.Default.midRunes3 = RuneForm.selectedRunes;
+                        break;
+                    case 4:
+                        Properties.Settings.Default.midRunes4 = RuneForm.selectedRunes;
+                        break;
+                }
+            }
+            else if (CurrentRole == 3)
+            {
+
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.adcRunes0 = RuneForm.selectedRunes;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.adcRunes1 = RuneForm.selectedRunes;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.adcRunes2 = RuneForm.selectedRunes;
+                        break;
+                    case 3:
+                        Properties.Settings.Default.adcRunes3 = RuneForm.selectedRunes;
+                        break;
+                    case 4:
+                        Properties.Settings.Default.adcRunes4 = RuneForm.selectedRunes;
+                        break;
+                }
+            }
+            else if (CurrentRole == 4)
+            {
+
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.supRunes0 = RuneForm.selectedRunes;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.supRunes1 = RuneForm.selectedRunes;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.supRunes2 = RuneForm.selectedRunes;
+                        break;
+                    case 3:
+                        Properties.Settings.Default.supRunes3 = RuneForm.selectedRunes;
+                        break;
+                    case 4:
+                        Properties.Settings.Default.supRunes4 = RuneForm.selectedRunes;
+                        break;
+                }
+            }
+            else if (CurrentRole == 5)
+            {
+
+                switch (SelectingSlot)
+                {
+                    case 0:
+                        Properties.Settings.Default.generalRunes0 = RuneForm.selectedRunes;
+                        break;
+                    case 1:
+                        Properties.Settings.Default.generalRunes1 = RuneForm.selectedRunes;
+                        break;
+                    case 2:
+                        Properties.Settings.Default.generalRunes2 = RuneForm.selectedRunes;
+                        break;
+                    case 3:
+                        Properties.Settings.Default.generalRunes3 = RuneForm.selectedRunes;
+                        break;
+                    case 4:
+                        Properties.Settings.Default.generalRunes4 = RuneForm.selectedRunes;
+                        break;
+                }
+            }
         }
 
         private void autoAccept_CheckedChanged(object sender, EventArgs e)
