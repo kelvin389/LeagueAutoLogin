@@ -221,7 +221,21 @@ namespace League
                 default: return new int[5];
             }
         }
-        
+
+        private static string[] GetRunesByRoleID(int roleID)
+        {
+            switch (roleID)
+            {
+                case 0: return RunesTop;
+                case 1: return RunesJg;
+                case 2: return RunesMid;
+                case 3: return RunesADC;
+                case 4: return RunesSup;
+                case 5: return RunesGeneral;
+                default: return new string[5];
+            }
+        }
+
         private void OnGameFlowUpdate(object sender, LeagueEvent e)
         {
             string phase = e.Data.ToString();
@@ -423,6 +437,7 @@ namespace League
 
             if (selectingBan)
             {
+                // update settings for this session
                 PreferredBans[SelectingSlot] = ChampForm.selectedId;
 
                 // update label
@@ -434,6 +449,7 @@ namespace League
             }
             else
             {
+                // update settings for this session
                 int[] currentPrefs = GetChampionPrefsByRoleID(CurrentRole);
                 currentPrefs[SelectingSlot] = ChampForm.selectedId;
 
@@ -451,6 +467,10 @@ namespace League
         public static void RunesSelected()
         {
             RuneForm.Close();
+
+            string[] curRunes = GetRunesByRoleID(CurrentRole);
+            curRunes[SelectingSlot] = RuneForm.selectedRunes;
+
             UpdateRuneSettings();
             Properties.Settings.Default.Save();
         }

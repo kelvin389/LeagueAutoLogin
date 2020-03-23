@@ -31,6 +31,15 @@ namespace League
         private const int SECONDARY_GROUPBOX_OFFSET = 50;
 
         public string selectedRunes = "";
+        
+        private enum Tree
+        {
+            Domination = 0,
+            Inspiration = 1,
+            Precision = 2,
+            Resolve = 3,
+            Sorcery = 4
+        }
 
         public RunesForm()
         {
@@ -90,12 +99,9 @@ namespace League
         private void UpdatePrimary()
         {
             Console.WriteLine(selectedRunes);
-            // clean up previous group boxes and radiobuttons
-            for (int i = 0; i < primaryGroupBoxes.Count; i++)
-            {
-                Controls.Remove(primaryGroupBoxes[i]);
-            }
-            primaryGroupBoxes.Clear();
+            CleanPrimary();
+
+            if (primaryTree == null) return;
 
             // iterate through each row of runes
             for (int i = 0; i < primaryTree.runeRows.Count; i++)
@@ -143,13 +149,10 @@ namespace League
         }
 
         private void UpdateSecondary()
-        {
-            // clean up previous group boxes and radiobuttons
-            for (int i = 0; i < secondaryGroupBoxes.Count; i++)
-            {
-                Controls.Remove(secondaryGroupBoxes[i]);
-            }
-            secondaryGroupBoxes.Clear();
+        { 
+            CleanSecondary();
+
+            if (secondaryTree == null) return;
 
             // iterate through each row of runes
             // start at 1 to skip keystones
@@ -171,6 +174,7 @@ namespace League
                         Tag = thisRowRunes[j].id,
                         Text = thisRowRunes[j].name
                     };
+                    if (selectedRunes.Contains(thisRowRunes[j].id.ToString())) checkbox.Checked = true;
                     thisRowCheckBoxes.Add(checkbox);
                     curX += GLOBAL_X_OFFSET;
                 }
@@ -196,17 +200,28 @@ namespace League
             }
         }
 
-        private void RunesForm_Load(object sender, EventArgs e)
+        private void CleanPrimary()
         {
-            primaryTree = runeTrees[0];
-            secondaryTree = runeTrees[0];
+            for (int i = 0; i < primaryGroupBoxes.Count; i++)
+            {
+                Controls.Remove(primaryGroupBoxes[i]);
+            }
+            primaryGroupBoxes.Clear();
+        }
+        private void CleanSecondary()
+        {
+            for (int i = 0; i < secondaryGroupBoxes.Count; i++)
+            {
+                Controls.Remove(secondaryGroupBoxes[i]);
+            }
+            secondaryGroupBoxes.Clear();
         }
 
         private void primary0_CheckedChanged(object sender, EventArgs e)
         {
             if (primary0.Checked)
             {
-                primaryTree = runeTrees[2]; // precision
+                primaryTree = runeTrees[(int)Tree.Precision];
                 UpdatePrimary();
             }
         }
@@ -215,7 +230,7 @@ namespace League
         {
             if (primary1.Checked)
             {
-                primaryTree = runeTrees[0]; //domination
+                primaryTree = runeTrees[(int)Tree.Domination];
                 UpdatePrimary();
             }
         }
@@ -224,7 +239,7 @@ namespace League
         {
             if (primary2.Checked)
             {
-                primaryTree = runeTrees[4]; // sorcery
+                primaryTree = runeTrees[(int)Tree.Sorcery];
                 UpdatePrimary();
             }
         }
@@ -233,7 +248,7 @@ namespace League
         {
             if (primary3.Checked)
             {
-                primaryTree = runeTrees[3]; // resolve
+                primaryTree = runeTrees[(int)Tree.Resolve];
                 UpdatePrimary();
             }
         }
@@ -242,7 +257,7 @@ namespace League
         {
             if (primary4.Checked)
             {
-                primaryTree = runeTrees[1]; // inspiration
+                primaryTree = runeTrees[(int)Tree.Inspiration];
                 UpdatePrimary();
             }
         }
@@ -252,7 +267,7 @@ namespace League
         {
             if (secondary0.Checked)
             {
-                secondaryTree = runeTrees[2]; // prec
+                secondaryTree = runeTrees[(int)Tree.Precision];
                 UpdateSecondary();
             }
         }
@@ -261,7 +276,7 @@ namespace League
         {
             if (secondary1.Checked)
             {
-                secondaryTree = runeTrees[0]; // dom
+                secondaryTree = runeTrees[(int)Tree.Domination];
                 UpdateSecondary();
             }
         }
@@ -270,7 +285,7 @@ namespace League
         {
             if (secondary2.Checked)
             {
-                secondaryTree = runeTrees[4]; // sorc
+                secondaryTree = runeTrees[(int)Tree.Sorcery];
                 UpdateSecondary();
             }
         }
@@ -279,7 +294,7 @@ namespace League
         {
             if (secondary3.Checked)
             {
-                secondaryTree = runeTrees[3]; // res
+                secondaryTree = runeTrees[(int)Tree.Resolve];
                 UpdateSecondary();
             }
         }
@@ -288,14 +303,25 @@ namespace League
         {
             if (secondary4.Checked)
             {
-                secondaryTree = runeTrees[1]; // insp
+                secondaryTree = runeTrees[(int)Tree.Inspiration];
                 UpdateSecondary();
             }
         }
         private void RunesForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Hide();
-            // TODO: reset all form fields for next time
+            CleanPrimary();
+            CleanSecondary();
+            primary0.Checked = false;
+            primary1.Checked = false;
+            primary2.Checked = false;
+            primary3.Checked = false;
+            primary4.Checked = false;
+            secondary0.Checked = false;
+            secondary1.Checked = false;
+            secondary2.Checked = false;
+            secondary3.Checked = false;
+            secondary4.Checked = false;
             e.Cancel = true; // cancel close event
         }
 
