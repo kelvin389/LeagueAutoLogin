@@ -89,11 +89,13 @@ namespace League
 
         private void UpdatePrimary()
         {
+            Console.WriteLine(selectedRunes);
             // clean up previous group boxes and radiobuttons
             for (int i = 0; i < primaryGroupBoxes.Count; i++)
             {
                 Controls.Remove(primaryGroupBoxes[i]);
             }
+            primaryGroupBoxes.Clear();
 
             // iterate through each row of runes
             for (int i = 0; i < primaryTree.runeRows.Count; i++)
@@ -114,6 +116,7 @@ namespace League
                         Tag = thisRowRunes[j].id,
                         Text = thisRowRunes[j].name
                     };
+                    if (selectedRunes.Contains(thisRowRunes[j].id.ToString())) button.Checked = true;
                     thisRowRadioButtons.Add(button);
                     curX += GLOBAL_X_OFFSET;
                 }
@@ -146,6 +149,7 @@ namespace League
             {
                 Controls.Remove(secondaryGroupBoxes[i]);
             }
+            secondaryGroupBoxes.Clear();
 
             // iterate through each row of runes
             // start at 1 to skip keystones
@@ -194,7 +198,8 @@ namespace League
 
         private void RunesForm_Load(object sender, EventArgs e)
         {
-
+            primaryTree = runeTrees[0];
+            secondaryTree = runeTrees[0];
         }
 
         private void primary0_CheckedChanged(object sender, EventArgs e)

@@ -810,31 +810,61 @@ namespace League
         private void Runes0_Click(object sender, EventArgs e)
         {
             SelectingSlot = 0;
+            SetRuneFormRunes();
             RuneForm.Show();
         }
 
         private void Runes1_Click(object sender, EventArgs e)
         {
             SelectingSlot = 1;
+            SetRuneFormRunes();
             RuneForm.Show();
         }
 
         private void Runes2_Click(object sender, EventArgs e)
         {
             SelectingSlot = 2;
+            SetRuneFormRunes();
             RuneForm.Show();
         }
 
         private void Runes3_Click(object sender, EventArgs e)
         {
             SelectingSlot = 3;
+            SetRuneFormRunes();
             RuneForm.Show();
         }
 
         private void Runes4_Click(object sender, EventArgs e)
         {
             SelectingSlot = 4;
+            SetRuneFormRunes();
             RuneForm.Show();
+        }
+
+        private void SetRuneFormRunes()
+        {
+            switch (CurrentRole)
+            {
+                case 0:
+                    RuneForm.selectedRunes = RunesTop[SelectingSlot];
+                    break;
+                case 1:
+                    RuneForm.selectedRunes = RunesJg[SelectingSlot];
+                    break;
+                case 2:
+                    RuneForm.selectedRunes = RunesMid[SelectingSlot];
+                    break;
+                case 3:
+                    RuneForm.selectedRunes = RunesADC[SelectingSlot];
+                    break;
+                case 4:
+                    RuneForm.selectedRunes = RunesSup[SelectingSlot];
+                    break;
+                case 5:
+                    RuneForm.selectedRunes = RunesGeneral[SelectingSlot];
+                    break;
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
