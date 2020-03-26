@@ -31,6 +31,9 @@ namespace League
         private const int SECONDARY_GROUPBOX_OFFSET = 50;
 
         public string selectedRunes = "";
+
+        private int primaryTreeId = 0;
+        private int secondaryTreeId = 0;
         
         private enum Tree
         {
@@ -103,6 +106,8 @@ namespace League
 
             if (primaryTree == null) return;
 
+            primaryTreeId = primaryTree.id;
+
             // iterate through each row of runes
             for (int i = 0; i < primaryTree.runeRows.Count; i++)
             {
@@ -153,6 +158,8 @@ namespace League
             CleanSecondary();
 
             if (secondaryTree == null) return;
+
+            secondaryTreeId = secondaryTree.id;
 
             // iterate through each row of runes
             // start at 1 to skip keystones
@@ -262,7 +269,6 @@ namespace League
             }
         }
 
-
         private void secondary0_CheckedChanged(object sender, EventArgs e)
         {
             if (secondary0.Checked)
@@ -368,19 +374,55 @@ namespace League
                 }
             }
 
-            List<int> selectedRuneIds = new List<int>();
+            List<int> selectedRuneIds = new List<int>(); // list of all selected runes
+            // add runes from radio buttons (primary)
             for (int i = 0; i < checkedRadios.Count; i++)
             {
                 int runeId = Convert.ToInt32(checkedRadios[i].Tag);
                 selectedRuneIds.Add(runeId);
             }
+            // add runes from check boxes (secondary)
             for (int i = 0; i < checkedBoxes.Count; i++)
             {
                 int runeId = Convert.ToInt32(checkedBoxes[i].Tag);
                 selectedRuneIds.Add(runeId);
             }
 
+            // groupboxes of shards
+            GroupBox shards0 = Controls.Find("shards0", false).FirstOrDefault() as GroupBox;
+            GroupBox shards1 = Controls.Find("shards1", false).FirstOrDefault() as GroupBox;
+            GroupBox shards2 = Controls.Find("shards2", false).FirstOrDefault() as GroupBox;
+
+            // list of all radio buttons handling shards
+            List<RadioButton> allShardButtons = new List<RadioButton>();
+
+            // add radio buttons from first row of shards
+            // this step is used because we can't access the "checked" var
+            // using (RadioButton)shards0.Controls[i].Checked for some reason
+            for (int i = 0; i < shards0.Controls.Count; i++)
+            {
+                allShardButtons.Add((RadioButton)shards0.Controls[i]);
+            }
+            // add radio buttons from second row of shards
+            for (int i = 0; i < shards1.Controls.Count; i++)
+            {
+                allShardButtons.Add((RadioButton)shards1.Controls[i]);
+            }
+            // add radio buttons from third row of shards
+            for (int i = 0; i < shards2.Controls.Count; i++)
+            {
+                allShardButtons.Add((RadioButton)shards2.Controls[i]);
+            }
+
+            for (int i = 0; i < allShardButtons.Count; i++)
+            {
+                if (allShardButtons[i].Checked) selectedRuneIds.Add(Convert.ToInt32(allShardButtons[i].Tag));
+            }
+
+
             string runeStr = "";
+
+            runeStr += primaryTreeId + "," + secondaryTreeId + "-";
             for (int i = 0; i < selectedRuneIds.Count; i++)
             {
                 runeStr += selectedRuneIds[i].ToString();

@@ -7,7 +7,7 @@ namespace LCUSharp
     public class RuneManager
     {
         ILeagueClient League;
-        const string endpointRoot = "lol-perks/v1/";
+        const string endpointRoot = "/lol-perks/v1/";
 
         public RuneManager(ILeagueClient league)
         {

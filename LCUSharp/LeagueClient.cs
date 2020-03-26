@@ -172,6 +172,7 @@ namespace LCUSharp
                     return await httpClient.DeleteAsync(endpoint);
                 case HttpMethod.Patch:
                     string patchjson = data.ToString();
+                    Console.WriteLine(patchjson);
                     return await PatchAsync(httpClient, endpoint, new StringContent(patchjson, Encoding.UTF8, "application/json"));
                 default:
                     throw new Exception("Unsupported HTTP method");

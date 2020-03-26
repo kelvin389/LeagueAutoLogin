@@ -340,6 +340,7 @@
             this.radioButton1.Size = new System.Drawing.Size(14, 13);
             this.radioButton1.TabIndex = 0;
             this.radioButton1.TabStop = true;
+            this.radioButton1.Tag = "5008";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
@@ -350,6 +351,7 @@
             this.radioButton2.Size = new System.Drawing.Size(14, 13);
             this.radioButton2.TabIndex = 1;
             this.radioButton2.TabStop = true;
+            this.radioButton2.Tag = "5005";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton3
@@ -360,6 +362,7 @@
             this.radioButton3.Size = new System.Drawing.Size(14, 13);
             this.radioButton3.TabIndex = 2;
             this.radioButton3.TabStop = true;
+            this.radioButton3.Tag = "5007";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // shards1
@@ -382,6 +385,7 @@
             this.radioButton4.Size = new System.Drawing.Size(14, 13);
             this.radioButton4.TabIndex = 2;
             this.radioButton4.TabStop = true;
+            this.radioButton4.Tag = "5003";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // radioButton5
@@ -392,6 +396,7 @@
             this.radioButton5.Size = new System.Drawing.Size(14, 13);
             this.radioButton5.TabIndex = 1;
             this.radioButton5.TabStop = true;
+            this.radioButton5.Tag = "5002";
             this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // radioButton6
@@ -402,6 +407,7 @@
             this.radioButton6.Size = new System.Drawing.Size(14, 13);
             this.radioButton6.TabIndex = 0;
             this.radioButton6.TabStop = true;
+            this.radioButton6.Tag = "5008";
             this.radioButton6.UseVisualStyleBackColor = true;
             // 
             // shards2
@@ -424,6 +430,7 @@
             this.radioButton7.Size = new System.Drawing.Size(14, 13);
             this.radioButton7.TabIndex = 2;
             this.radioButton7.TabStop = true;
+            this.radioButton7.Tag = "5003";
             this.radioButton7.UseVisualStyleBackColor = true;
             // 
             // radioButton8
@@ -434,6 +441,7 @@
             this.radioButton8.Size = new System.Drawing.Size(14, 13);
             this.radioButton8.TabIndex = 1;
             this.radioButton8.TabStop = true;
+            this.radioButton8.Tag = "5002";
             this.radioButton8.UseVisualStyleBackColor = true;
             // 
             // radioButton9
@@ -444,6 +452,7 @@
             this.radioButton9.Size = new System.Drawing.Size(14, 13);
             this.radioButton9.TabIndex = 0;
             this.radioButton9.TabStop = true;
+            this.radioButton9.Tag = "5001";
             this.radioButton9.UseVisualStyleBackColor = true;
             // 
             // RunesForm

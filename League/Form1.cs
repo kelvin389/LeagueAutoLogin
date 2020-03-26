@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using LCUSharp;
 using LCUSharp.DataObjects;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace League
@@ -44,8 +46,7 @@ namespace League
         private event EventHandler<LeagueEvent> GameFlowUpdated;
         
         private static List<int> UnavailableChampsID = new List<int>();
-
-        private bool inChampSelect = false;
+        private static List<int> HandledActionIDs = new List<int>();
 
         private bool autoAcceptQueue = false;
         private bool autoChampSelect = false;
@@ -88,7 +89,6 @@ namespace League
             var gameflow = await API.client.MakeApiRequest(HttpMethod.Get, "/lol-gameflow/v1/gameflow-phase");
             string phase = await gameflow.Content.ReadAsStringAsync();
             phase = phase.Replace("\"", ""); // remove quotes
-            if (phase == "ChampSelect") inChampSelect = true;
 
             // subscribe to events
             ChampSelectSessionUpdated += OnChampSelectSessionUpdate;
@@ -245,25 +245,20 @@ namespace League
                 API.client.MakeApiRequest(HttpMethod.Post, "/lol-matchmaking/v1/ready-check/decline");
             }
             // returned to lobby for whatever reason
-            else if (inChampSelect && phase == "Lobby")
+            else if (phase == "Lobby")
             {
-                inChampSelect = false;
                 UnavailableChampsID.Clear();
-            }
-            else if (!inChampSelect && phase == "ChampSelect") 
-            {
-                inChampSelect = true;
+                HandledActionIDs.Clear();
             }
         }
 
         private void OnChampSelectSessionUpdate(object sender, LeagueEvent e)
         {
             // exit if no actions (usually when leaving champ select)
-            if (!e.Data["actions"].HasValues) return;
+            // or auto champ select not enabled
+            if (!e.Data["actions"].HasValues || !autoChampSelect) return;
 
             WriteSafe("formdebug", e.Data.ToString());
-
-            if (!autoChampSelect) return;
 
             JToken bans = e.Data["bans"];
             var ourBans = bans["myTeamBans"];
@@ -322,11 +317,15 @@ namespace League
                 bool myTurn = Convert.ToBoolean(curAction["isInProgress"]);
                 string type = curAction["type"].ToString();
 
-                if (curCellId == localCellId && myTurn)
+                // current cell belongs to us and hasn't 
+                if (curCellId == localCellId && myTurn && !HandledActionIDs.Contains(curCellId))
                 {
+                    HandledActionIDs.Add(curCellId);
+
                     if (type == "pick")
                     {
                         int[] currentPrefs = GetChampionPrefsByRoleID(roleID);
+                        string[] currentRunes = GetRunesByRoleID(roleID);
 
                         // automatically pick based on preferred list
                         for (int j = 0; j < PrefPoolSize; j++)
@@ -351,15 +350,38 @@ namespace League
                                         break;
                                     }
                                 }
-                                if (autoPage == null)
+                                if (autoPage != null) // if page named "auto" is found
                                 {
-                                    // if player doesn't have a runepage named "auto" it will
-                                    // just change the one they have selected
-                                    autoPage = runeManager.GetCurrentRunePage();
+                                    // delete it
+                                    API.client.MakeApiRequest(HttpMethod.Delete, "/lol-perks/v1/pages/" + autoPage.Id);
                                 }
 
+                                // convert runes string to int array
+                                // right side is runes, left side is tree ids (-)
+                                string primaryIdstr = currentRunes[j].Split('-')[0].Split(',')[0];
+                                int primaryId = Convert.ToInt32(primaryIdstr);
+                                string secondaryIdstr = currentRunes[j].Split('-')[0].Split(',')[1];
+                                int secondaryId = Convert.ToInt32(secondaryIdstr);
 
-                                WriteSafe("formdebug", runeManager.GetCurrentRunePage().PrimaryTreeId + "");
+                                string[] splitRunes = currentRunes[j].Split('-')[1].Split(',');
+                                int[] selectedRunesArr = new int[9];
+                                for (int k = 0; k < splitRunes.Length; k++)
+                                {
+                                    selectedRunesArr[k] = Convert.ToInt32(splitRunes[k]);
+                                }
+
+                                RunePage newPage = new RunePage()
+                                {
+                                    IsActive = true,
+                                    IsCurrentPage = true,
+                                    Name = "auto",
+                                    PrimaryTreeId = primaryId,
+                                    SelectedRunes = selectedRunesArr,
+                                    SecondaryTreeId = secondaryId,
+                                };
+
+                                // create new rune page with runes chosen in form
+                                API.client.MakeApiRequest(HttpMethod.Post, "/lol-perks/v1/pages/", newPage);
 
                                 break;
                             }
