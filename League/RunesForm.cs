@@ -8,13 +8,6 @@ namespace League
 {
     public partial class RunesForm : Form
     {
-        /*
-         * 0 : domination
-         * 1 : inspiration
-         * 2 : precision
-         * 3 : resolve
-         * 4 : sorcery
-         */
         private List<RuneTree> runeTrees = new List<RuneTree>();
         private List<GroupBox> primaryGroupBoxes = new List<GroupBox>();
         private List<GroupBox> secondaryGroupBoxes = new List<GroupBox>();
@@ -101,7 +94,6 @@ namespace League
 
         private void UpdatePrimary()
         {
-            Console.WriteLine(selectedRunes);
             CleanPrimary();
 
             if (primaryTree == null) return;
