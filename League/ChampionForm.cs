@@ -48,7 +48,7 @@ namespace League
 
                 // next champion (next on the JProperty layer)
                 JpropLevel = JpropLevel.Next;
-                
+
             }
 
             foreach (string name in ChampNames)
@@ -86,7 +86,8 @@ namespace League
         private void SelectChamp()
         {
             string champ = (string)listBox1.SelectedItem;
-            try {
+            try
+            {
                 Champions.TryGetValue(champ, out selectedId);
                 selectedName = champ;
                 Form1.ChampionSelected();
@@ -104,6 +105,6 @@ namespace League
             ActiveControl = textBox1;
         }
 
-        
+
     }
 }

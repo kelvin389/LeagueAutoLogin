@@ -1,12 +1,10 @@
-﻿using System;
+﻿using LCUSharp;
+using LCUSharp.DataObjects;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using LCUSharp;
-using LCUSharp.DataObjects;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace League
 {
@@ -44,7 +42,7 @@ namespace League
         // event handlers
         private event EventHandler<LeagueEvent> ChampSelectSessionUpdated;
         private event EventHandler<LeagueEvent> GameFlowUpdated;
-        
+
         private static List<int> UnavailableChampsID = new List<int>();
         private static List<int> HandledActionIDs = new List<int>();
 

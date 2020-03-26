@@ -34,7 +34,7 @@ namespace League
 
         private int primaryTreeId = 0;
         private int secondaryTreeId = 0;
-        
+
         private enum Tree
         {
             Domination = 0,
@@ -154,7 +154,7 @@ namespace League
         }
 
         private void UpdateSecondary()
-        { 
+        {
             CleanSecondary();
 
             if (secondaryTree == null) return;
@@ -435,7 +435,7 @@ namespace League
         }
     }
 
-    
+
 }
 
 /*
